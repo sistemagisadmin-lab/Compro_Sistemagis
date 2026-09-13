@@ -1,0 +1,91 @@
+---
+const steps = [
+  {
+    num: "01",
+    phase: "Discover",
+    title: "Memahami Kebutuhan & Akar Masalah",
+    desc: "Kami duduk bersama Anda untuk menggali tantangan bisnis, alur kerja yang sedang berjalan, serta ekspektasi hasil yang ingin dicapai.",
+    badge: "Tahap 1",
+  },
+  {
+    num: "02",
+    phase: "Define",
+    title: "Merancang Scope & Arsitektur Solusi",
+    desc: "Menyusun peta jalan teknis, skema data, spesifikasi fitur, serta timeline pengerjaan yang realistis tanpa biaya tak terduga.",
+    badge: "Tahap 2",
+  },
+  {
+    num: "03",
+    phase: "Build",
+    title: "Desain UI/UX & Rekayasa Kode",
+    desc: "Membangun sistem dengan kode yang bersih, strongly-typed, antarmuka responsif, dan integrasi API yang aman.",
+    badge: "Tahap 3",
+  },
+  {
+    num: "04",
+    phase: "Refine",
+    title: "Testing Menyeluruh & Optimasi",
+    desc: "Melakukan QA bertingkat, uji beban performa, validasi keamanan data, serta penyesuaian detail berdasarkan feedback Anda.",
+    badge: "Tahap 4",
+  },
+  {
+    num: "05",
+    phase: "Launch",
+    title: "Deploy Produksi & Handover Tuntas",
+    desc: "Peluncuran ke lingkungan produksi secara aman, pelatihan penggunaan tim Anda, dokumentasi lengkap, dan pendampingan pasca-rilis.",
+    badge: "Tahap 5",
+  },
+];
+---
+
+<section id="how-we-work" class="relative w-full py-24 sm:py-32 px-6 sm:px-10 lg:px-12 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5194ea]/10 text-[#5194ea] border border-[#5194ea]/25 text-xs font-bold uppercase tracking-wider mb-4">
+        Metodologi Pengerjaan
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black text-[#0f172a] tracking-tight leading-tight">
+        How We Work
+      </h2>
+      <p class="mt-4 text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
+        <span class="text-[#0f172a] font-semibold">From messy ideas to something that works.</span> Cara Sistemagis membereskan setiap proyek secara terukur, transparan, dan dapat diandalkan.
+      </p>
+    </div>
+
+    <!-- 5 Steps Process Timeline -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+      {
+        steps.map((step, idx) => (
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/80 hover:border-[#8b5cf6]/40 hover:bg-white transition-all duration-300 group hover:shadow-xl hover:shadow-[#8b5cf6]/5 flex flex-col justify-between relative">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#8b5cf6] bg-[#8b5cf6]/10 px-2.5 py-0.5 rounded-full">
+                  {step.phase}
+                </span>
+                <span class="text-2xl font-black text-slate-300 font-mono group-hover:text-[#8b5cf6] transition-colors">
+                  {step.num}
+                </span>
+              </div>
+
+              <h3 class="text-base sm:text-lg font-bold text-[#0f172a] tracking-tight mb-2 group-hover:text-[#5194ea] transition-colors">
+                {step.title}
+              </h3>
+
+              <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                {step.desc}
+              </p>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-200/60 flex items-center justify-between text-[11px] font-semibold text-slate-400">
+              <span>{step.badge}</span>
+              {idx < 4 && (
+                <span class="text-[#5194ea] group-hover:translate-x-1 transition-transform">→</span>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

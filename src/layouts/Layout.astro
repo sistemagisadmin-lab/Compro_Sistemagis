@@ -1,0 +1,130 @@
+---
+import '../styles/global.css';
+import 'lenis/dist/lenis.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = "Sistemagis — Digital Product & Solution Studio | We Make Digital Solutions Feel Magis",
+  description = "Sistemagis adalah digital product & solution studio yang membangun produk digital sendiri (KisahMagis, Photobooth, SistemKost) dan solusi sistem bisnis kustom (Web, SaaS, Automation & AI). Bereskan Solusi. Bikin Magis.",
+  image = "/favicon.svg",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sistemagis.com");
+---
+
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- Fonts Preloading -->
+    <link
+      rel="preload"
+      href="/fonts/Figtree/figtree-v2-latin-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Figtree/figtree-v2-latin-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Figtree/figtree-v2-latin-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/fonts/Figtree/figtree.css" />
+    <link rel="stylesheet" href="/fonts/Satoshi/satoshi.css" />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Sistemagis Studio" />
+    <meta
+      name="keywords"
+      content="Sistemagis, Digital Product Studio, Solution Studio, KisahMagis, SistemKost, MagisPhotobooth, Web Development, SaaS Development, Custom Business System, Automation, AI Solutions, Software House Indonesia"
+    />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:site_name" content="Sistemagis" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+
+    <!-- Twitter / X -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+
+    <!-- Schema.org JSON-LD -->
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Sistemagis",
+        "alternateName": "Sistemagis Studio",
+        "url": "https://sistemagis.com",
+        "logo": "https://sistemagis.com/favicon.svg",
+        "description": "Digital product & solution studio yang membangun teknologi untuk membereskan masalah dan menciptakan pengalaman digital bernilai magis.",
+        "slogan": "Bereskan Solusi. Bikin Magis.",
+        "foundingLocation": "Indonesia",
+        "knowsAbout": [
+          "Digital Product Studio",
+          "Custom Business Management System",
+          "SaaS Engineering",
+          "Enterprise Automation & AI Solutions",
+          "Web & Mobile Platforms"
+        ]
+      })}
+    />
+  </head>
+  <body class="bg-white text-slate-900 antialiased selection:bg-[#8b5cf6] selection:text-white">
+    <slot />
+
+    <script>
+      import Lenis from 'lenis';
+
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        touchMultiplier: 1.2,
+      });
+
+      // Expose to window for scroll navigation triggers
+      (window as any).lenis = lenis;
+
+      function raf(time: number) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+    </script>
+  </body>
+</html>

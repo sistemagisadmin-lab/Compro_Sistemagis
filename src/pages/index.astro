@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar/Navbar.astro';
+import HeroSection from '../components/Hero/HeroSection.astro';
+import WhatWeDoSection from '../components/WhatWeDo/WhatWeDoSection.astro';
+import ProductsSection from '../components/Products/ProductsSection.astro';
+import SolutionsSection from '../components/Solutions/SolutionsSection.astro';
+import WhyMagisSection from '../components/WhyMagis/WhyMagisSection.astro';
+import WorksSection from '../components/Works/WorksSection.astro';
+import HowWeWorkSection from '../components/HowWeWork/HowWeWorkSection.astro';
+import AboutSection from '../components/About/AboutSection.astro';
+import SignatureCTA from '../components/CTA/SignatureCTA.astro';
+import ContactSection from '../components/Contact/ContactSection.astro';
+import Footer from '../components/Footer/Footer.astro';
+---
+
+<Layout
+  title="Sistemagis — Digital Product & Solution Studio | We Make Digital Solutions Feel Magis"
+  description="Sistemagis membangun produk digital (KisahMagis, Photobooth, SistemKost) dan solusi sistem bisnis kustom (Web, SaaS, Automation & AI). Bereskan Solusi. Bikin Magis."
+>
+  <Navbar />
+  <main class="relative min-h-screen overflow-hidden">
+    <HeroSection />
+    <WhatWeDoSection />
+    <ProductsSection />
+    <SolutionsSection />
+    <WhyMagisSection />
+    <WorksSection />
+    <HowWeWorkSection />
+    <AboutSection />
+    <SignatureCTA />
+    <ContactSection />
+  </main>
+  <Footer />
+</Layout>

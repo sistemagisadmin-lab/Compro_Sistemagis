@@ -1,0 +1,97 @@
+---
+import iconGradient from '../../images/icon sistemagis gradient.png';
+
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="w-full bg-[#0b1120] text-slate-400 py-16 px-6 sm:px-10 lg:px-12 border-t border-slate-800">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
+      <!-- Brand & Tagline -->
+      <div class="lg:col-span-4">
+        <a href="#header" class="inline-flex items-center gap-3 text-white font-bold tracking-tight text-xl mb-4 group">
+          <div class="w-8 h-8 rounded-xl overflow-hidden flex items-center justify-center p-0.5 shadow-sm group-hover:scale-105 transition-transform">
+            <img src={iconGradient.src} alt="Sistemagis Logo" class="w-full h-full object-contain" />
+          </div>
+          <span class="text-white font-bold">Sistemagis<span class="text-[#8b5cf6]">.</span></span>
+        </a>
+
+        <p class="text-white font-semibold text-sm mb-2">
+          Bereskan Solusi. Bikin Magis.
+        </p>
+
+        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm mb-6">
+          Digital product & solution studio yang membangun produk digital mandiri dan solusi teknologi kustom untuk membantu bisnis bekerja lebih sederhana, terhubung, dan siap berkembang.
+        </p>
+
+        <!-- Social Media Links -->
+        <div class="flex items-center gap-3 text-xs font-semibold text-slate-400">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">LinkedIn</a>
+          <span>•</span>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
+          <span>•</span>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">GitHub</a>
+          <span>•</span>
+          <a href="mailto:hello@sistemagis.com" class="hover:text-white transition-colors">Email</a>
+        </div>
+      </div>
+
+      <!-- Column 1: Products -->
+      <div class="lg:col-span-3">
+        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Products</h4>
+        <ul class="space-y-2.5 text-xs sm:text-sm">
+          <li>
+            <a href="https://kisahmagis.com" target="_blank" rel="noopener noreferrer" class="hover:text-[#8b5cf6] transition-colors flex items-center gap-1.5">
+              <span>KisahMagis</span>
+              <span class="text-[10px] px-1.5 py-0.2 rounded bg-[#8b5cf6]/20 text-[#c4b5fd]">Wedding</span>
+            </a>
+          </li>
+          <li>
+            <a href="#products" class="hover:text-[#8b5cf6] transition-colors">MagisPhotobooth</a>
+          </li>
+          <li>
+            <a href="#products" class="hover:text-[#8b5cf6] transition-colors">SistemKost</a>
+          </li>
+          <li>
+            <a href="#products" class="hover:text-[#8b5cf6] transition-colors text-slate-500">More Magis is Coming</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Column 2: Solutions -->
+      <div class="lg:col-span-3">
+        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Solutions</h4>
+        <ul class="space-y-2.5 text-xs sm:text-sm">
+          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">Company Website</a></li>
+          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">Custom Business System</a></li>
+          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">SaaS Development</a></li>
+          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">Business Automation</a></li>
+          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">AI & Custom RAG</a></li>
+          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">System & API Integration</a></li>
+        </ul>
+      </div>
+
+      <!-- Column 3: Company -->
+      <div class="lg:col-span-2">
+        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Company</h4>
+        <ul class="space-y-2.5 text-xs sm:text-sm">
+          <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#works" class="hover:text-white transition-colors">Things We've Made</a></li>
+          <li><a href="#why-magis" class="hover:text-white transition-colors">Why Magis?</a></li>
+          <li><a href="#how-we-work" class="hover:text-white transition-colors">How We Work</a></li>
+          <li><a href="#contact" class="hover:text-white transition-colors">Contact Studio</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom copyright -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <p>© {currentYear} Sistemagis. All rights reserved.</p>
+      <div class="flex items-center gap-4 text-slate-400">
+        <span>Bereskan Solusi. Bikin Magis.</span>
+        <span>•</span>
+        <span>Bandung, Indonesia</span>
+      </div>
+    </div>
+  </div>
+</footer>

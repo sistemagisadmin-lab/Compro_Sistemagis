@@ -1,0 +1,166 @@
+---
+const solutions = [
+  {
+    num: "01",
+    id: "website",
+    title: "Company Website",
+    badge: "Brand & Digital Presence",
+    desc: "Website company profile modern dan berkecepatan tinggi yang merepresentasikan reputasi brand Anda secara kredibel dan memikat calon klien potensial.",
+    points: [
+      "Desain kustom eksklusif (bukan template pasaran)",
+      "Skor performa Google Lighthouse 95+ (SEO Optimal)",
+      "Animasi mikro fluid & interaktivitas responsif",
+      "Manajemen konten ringan dan mudah diperbarui"
+    ],
+    tech: ["Astro", "Tailwind CSS", "Svelte", "Cloudflare Pages"]
+  },
+  {
+    num: "02",
+    id: "custom-system",
+    title: "Custom Business System",
+    badge: "Operational Efficiency",
+    desc: "Aplikasi dan sistem internal khusus yang disesuaikan persis dengan SOP, alur koordinasi tim, serta tata kelola administrasi bisnis Anda.",
+    points: [
+      "Role-Based Access Control (RBAC) berjenjang",
+      "Dashboard analitik & laporan bisnis instan",
+      "Otomasi alur persetujuan (approval flow)",
+      "Audit log transaksi aman dan transparan"
+    ],
+    tech: ["Laravel / Fastify", "TypeScript", "PostgreSQL", "React"]
+  },
+  {
+    num: "03",
+    id: "saas",
+    title: "SaaS Development",
+    badge: "Digital Product Engineering",
+    desc: "Membangun produk Software-as-a-Service dari fase perumusan arsitektur, MVP cepat, hingga sistem multi-tenant skala besar siap monetize.",
+    points: [
+      "Arsitektur database multi-tenant terisolasi",
+      "Sistem langganan, billing & payment gateway otomatis",
+      "User onboarding mandiri & customer portal",
+      "Monitoring performa server 24/7 & auto-scaling"
+    ],
+    tech: ["Next.js / SvelteKit", "Node.js", "Redis", "Docker", "Stripe / Midtrans"]
+  },
+  {
+    num: "04",
+    id: "automation",
+    title: "Business Automation",
+    badge: "Cost & Time Saver",
+    desc: "Mengeliminasi pekerjaan manual repetitif dengan otomasi alur kerja antar software, sinkronisasi webhook, dan integrasi WhatsApp otomatis.",
+    points: [
+      "Sinkronisasi data otomatis antar aplikasi berbeda",
+      "Notifikasi instan transaksi via WhatsApp & Email",
+      "Pembuatan invoice & rekonsiliasi data tanpa campur tangan staf",
+      "Pencegahan human-error pada entri data berulang"
+    ],
+    tech: ["n8n", "Webhooks", "REST APIs", "Python Workflows"]
+  },
+  {
+    num: "05",
+    id: "ai-solutions",
+    title: "AI Solutions & Custom RAG",
+    badge: "Smart Automation",
+    desc: "Menerapkan kecerdasan buatan terapan ke dalam operasional perusahaan. Dari asisten customer service cerdas hingga pencarian dokumen internal pintar.",
+    points: [
+      "Retrieval-Augmented Generation (RAG) atas SOP & data internal",
+      "AI Customer Support 24/7 yang menjawab akurat",
+      "Ekstraksi & ringkasan dokumen otomatis",
+      "Model AI aman dan privat tanpa kebocoran data"
+    ],
+    tech: ["OpenAI / Gemini API", "pgvector", "LangChain", "FastAPI"]
+  },
+  {
+    num: "06",
+    id: "integration",
+    title: "System & API Integration",
+    badge: "Unified Ecosystem",
+    desc: "Menghubungkan sistem lama (legacy), ERP, CRM, platform e-commerce, dan sistem pihak ketiga agar seluruh data bisnis terhubung dalam satu jalur.",
+    points: [
+      "Integrasi API dua arah yang aman (mTLS / JWT)",
+      "Pipeline ETL pemindahan data tanpa downtime",
+      "Sinkronisasi stok barang & order realtime",
+      "Manajemen error recovery & buffer antrean pesan"
+    ],
+    tech: ["REST", "GraphQL", "Redis Queue", "Microservices"]
+  }
+];
+---
+
+<section id="solutions" class="relative w-full py-24 sm:py-32 px-6 sm:px-10 lg:px-12 bg-slate-50 border-t border-slate-200/80">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5194ea]/10 text-[#5194ea] border border-[#5194ea]/25 text-xs font-bold uppercase tracking-wider mb-4">
+        Sistemagis Solutions
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black text-[#0f172a] tracking-tight leading-tight">
+        Have a Problem to Solve?
+      </h2>
+      <p class="mt-4 text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
+        Tidak semua masalah membutuhkan produk yang sama. Kami membantu merancang dan membangun solusi yang sesuai dengan kebutuhan dan skala bisnis Anda.
+      </p>
+    </div>
+
+    <!-- 6 Solutions Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        solutions.map((item) => (
+          <div class="p-8 rounded-3xl bg-white border border-slate-200/80 hover:border-[#5194ea]/50 transition-all duration-300 group hover:shadow-xl hover:shadow-[#5194ea]/5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#5194ea] bg-[#5194ea]/10 px-3 py-1 rounded-full border border-[#5194ea]/20">
+                  {item.badge}
+                </span>
+                <span class="text-2xl font-black text-slate-300 font-mono group-hover:text-[#5194ea] transition-colors">
+                  {item.num}
+                </span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl font-bold text-[#0f172a] tracking-tight mb-3 group-hover:text-[#5194ea] transition-colors">
+                {item.title}
+              </h3>
+
+              <p class="text-slate-600 text-sm leading-relaxed mb-6">
+                {item.desc}
+              </p>
+
+              <!-- Points -->
+              <div class="space-y-2 mb-6">
+                {item.points.map((pt) => (
+                  <div class="flex items-start gap-2 text-xs font-medium text-slate-700">
+                    <svg class="w-3.5 h-3.5 text-[#5194ea] shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                    </svg>
+                    <span>{pt}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Tech Tags -->
+            <div class="pt-5 border-t border-slate-100 flex flex-wrap gap-1.5 items-center justify-between">
+              <div class="flex flex-wrap gap-1.5">
+                {item.tech.slice(0, 3).map((t) => (
+                  <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-mono font-medium">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href="#contact"
+                class="text-xs font-bold text-[#5194ea] hover:text-[#8b5cf6] inline-flex items-center gap-1 transition-colors"
+              >
+                <span>Konsultasi</span>
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,125 @@
+---
+const works = [
+  {
+    title: "KisahMagis — Wedding & Digital Invitation Platform",
+    client: "Sistemagis Product",
+    category: "Consumer Web & Event Tech",
+    desc: "Platform all-in-one undangan pernikahan digital interaktif dengan integrasi RSVP instan, manajemen meja, check-in QR code, dan wedding planning dashboard.",
+    technologies: ["Astro", "Svelte", "PostgreSQL", "Tailwind CSS", "Cloudflare"],
+    result: "Melayani ribuan tamu pernikahan dengan 99.9% uptime dan loading time < 1 detik.",
+    badgeColor: "bg-[#8b5cf6]/10 text-[#8b5cf6] border-[#8b5cf6]/20",
+    linkText: "Lihat Produk →",
+    linkHref: "https://kisahmagis.com",
+    external: true,
+  },
+  {
+    title: "Sistem Manajemen Kost Multi-Properti",
+    client: "Property Management Client",
+    category: "Custom Business System",
+    desc: "Sistem terpadu pengelolaan properti kost: penagihan sewa otomatis via WhatsApp, auto-reconciliation payment gateway, pencatatan biaya, dan analitik okupansi.",
+    technologies: ["TypeScript", "Fastify", "PostgreSQL", "React", "Docker"],
+    result: "Memangkas waktu rekonsiliasi manual sebesar 85% dan menurunkan angka keterlambatan bayar sewa.",
+    badgeColor: "bg-[#5194ea]/10 text-[#5194ea] border-[#5194ea]/20",
+    linkText: "Detail Solusi →",
+    linkHref: "#contact",
+    external: false,
+  },
+  {
+    title: "Platform Digital Photobooth & Live Cloud Gallery",
+    client: "Corporate Event Partner",
+    category: "Interactive Event Platform",
+    desc: "Software photobooth otomatis dengan dynamic custom frame generator, instant QR code download, dan sinkronisasi galeri foto cloud realtime di lokasi event.",
+    technologies: ["WebSockets", "Node.js", "Canvas API", "AWS S3", "Svelte"],
+    result: "Telah digunakan di berbagai corporate gathering dan event dengan ribuan capture foto per sesi.",
+    badgeColor: "bg-[#0f172a]/10 text-[#0f172a] border-[#0f172a]/20",
+    linkText: "Detail Solusi →",
+    linkHref: "#contact",
+    external: false,
+  },
+  {
+    title: "Automasi Ekstraksi Dokumen & AI Copilot Internal",
+    client: "Fintech & B2B Service",
+    category: "AI & Automation Solution",
+    desc: "Pipeline otomasi pemrosesan faktur dan dokumen legal dengan integrasi LLM dan semantic search, menghubungkan data langsung ke database akuntansi klien.",
+    technologies: ["Python", "FastAPI", "OpenAI API", "pgvector", "n8n"],
+    result: "Menghemat lebih dari 120 jam kerja staf administrasi setiap bulan dengan akurasi ekstraksi 98%.",
+    badgeColor: "bg-[#d4af57]/15 text-[#b89035] border-[#d4af57]/30",
+    linkText: "Detail Solusi →",
+    linkHref: "#contact",
+    external: false,
+  },
+];
+---
+
+<section id="works" class="relative w-full py-24 sm:py-32 px-6 sm:px-10 lg:px-12 bg-slate-50 border-t border-slate-200/80">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0f172a]/10 text-[#0f172a] border border-[#0f172a]/20 text-xs font-bold uppercase tracking-wider mb-4">
+        Our Portfolio & Works
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black text-[#0f172a] tracking-tight leading-tight">
+        Things We've Made
+      </h2>
+      <p class="mt-4 text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
+        <span class="text-[#0f172a] font-semibold">From Ideas to Something Real.</span> Cuplikan sistem dan platform digital yang kami rancang, bangun, dan operasikan secara nyata.
+      </p>
+    </div>
+
+    <!-- Works Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        works.map((item) => (
+          <div class="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 hover:border-[#5194ea]/50 transition-all duration-300 group hover:shadow-2xl hover:shadow-[#5194ea]/10 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${item.badgeColor}`}>
+                  {item.category}
+                </span>
+                <span class="text-xs font-medium text-slate-500 font-mono">
+                  {item.client}
+                </span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl font-black text-[#0f172a] tracking-tight group-hover:text-[#5194ea] transition-colors mb-3">
+                {item.title}
+              </h3>
+
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                {item.desc}
+              </p>
+
+              <!-- Outcome Highlight -->
+              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/60 mb-6">
+                <div class="text-xs font-bold uppercase tracking-wider text-[#5194ea] mb-1">Dampak & Hasil:</div>
+                <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                  {item.result}
+                </p>
+              </div>
+            </div>
+
+            <!-- Tech Tags & Action Link -->
+            <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+              <div class="flex flex-wrap gap-1.5">
+                {item.technologies.map((t) => (
+                  <span class="px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-mono font-medium">
+                    {t}
+                  </span>
+                ))}
+              </div>
+
+              <a
+                href={item.linkHref}
+                target={item.external ? "_blank" : "_self"}
+                rel={item.external ? "noopener noreferrer" : ""}
+                class="inline-flex items-center gap-1.5 text-xs font-bold text-[#5194ea] hover:text-[#8b5cf6] transition-colors uppercase tracking-wider"
+              >
+                <span>{item.linkText}</span>
+              </a>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

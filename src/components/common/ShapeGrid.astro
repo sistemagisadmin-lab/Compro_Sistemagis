@@ -1,0 +1,183 @@
+---
+export type Props = {
+  interactive?: boolean;
+  class?: string;
+};
+
+const { interactive = true, class: className = '-translate-y-12 md:-translate-y-24' } =
+  Astro.props as Props;
+---
+
+<div
+  class="absolute inset-0 z-0 overflow-hidden pointer-events-none [mask-image:radial-gradient(ellipse_at_top,black_30%,transparent_75%)]"
+>
+  <div
+    class={`shape-grid-container absolute inset-0 pointer-events-auto opacity-35 ${className}`}
+    data-interactive={interactive ? 'true' : 'false'}
+  >
+  </div>
+</div>
+
+<style is:global>
+  .shape-square.random-active,
+  .shape-square.mouse-active {
+    background-color: rgba(81, 148, 234, 0.18);
+    border-color: rgba(139, 92, 246, 0.5);
+    transform: scale(1.06);
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.25);
+    transition-duration: 300ms;
+  }
+
+  .shape-grid-container[data-interactive='true'] .shape-square:hover {
+    background-color: rgba(139, 92, 246, 0.2) !important;
+    border-color: rgba(81, 148, 234, 0.7) !important;
+    transform: scale(1.08) !important;
+    box-shadow: 0 0 24px rgba(81, 148, 234, 0.35) !important;
+    transition-duration: 200ms !important;
+  }
+
+  .shape-grid-container[data-interactive='false'] {
+    pointer-events: none;
+  }
+</style>
+
+<script>
+  const gridContainers = document.querySelectorAll('.shape-grid-container');
+
+  gridContainers.forEach((gridContainer) => {
+    const isInteractive = gridContainer.getAttribute('data-interactive') === 'true';
+    let squares: Element[] = [];
+    let intervalId: ReturnType<typeof setInterval> | null = null;
+    let isVisible = false;
+
+    const containerEl = gridContainer as HTMLElement;
+    containerEl.style.display = 'grid';
+    containerEl.style.gridTemplateColumns = 'repeat(auto-fill, 120px)';
+    containerEl.style.gridAutoRows = '120px';
+    containerEl.style.gap = '10px';
+    containerEl.style.justifyContent = 'center';
+
+    const updateGrid = () => {
+      gridContainer.innerHTML = '';
+      squares = [];
+      const width = gridContainer.clientWidth;
+      const height = gridContainer.clientHeight;
+
+      const cols = Math.floor(width / 130) + 2;
+      const rows = Math.floor(height / 130) + 2;
+      const total = cols * rows;
+
+      for (let i = 0; i < total; i++) {
+        const square = document.createElement('div');
+        square.className =
+          'shape-square rounded-xl border border-slate-300/60 dark:border-slate-700/50 transition-all duration-700';
+
+        if (!isInteractive && Math.random() < 0.1) {
+          square.classList.add('random-active');
+        }
+
+        gridContainer.appendChild(square);
+        squares.push(square);
+      }
+    };
+
+    updateGrid();
+
+    const startTimer = () => {
+      if (intervalId || !isInteractive) return;
+      intervalId = setInterval(() => {
+        if (squares.length === 0 || !isVisible || document.hidden) return;
+
+        const numToActivate = Math.floor(Math.random() * 3) + 1;
+
+        for (let i = 0; i < numToActivate; i++) {
+          const randomIdx = Math.floor(Math.random() * squares.length);
+          const square = squares[randomIdx];
+
+          if (!square.classList.contains('random-active')) {
+            square.classList.add('random-active');
+
+            setTimeout(() => {
+              square.classList.remove('random-active');
+            }, Math.random() * 2000 + 1200);
+          }
+        }
+      }, 600);
+    };
+
+    const stopTimer = () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+        intervalId = null;
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            startTimer();
+          } else {
+            stopTimer();
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(gridContainer);
+
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+    window.addEventListener('resize', () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(updateGrid, 150);
+    }, { passive: true });
+  });
+
+  const interactiveGrids = Array.from(gridContainers).filter(
+    (grid) => grid.getAttribute('data-interactive') === 'true'
+  );
+
+  if (interactiveGrids.length > 0) {
+    let hoveredSquare: Element | null = null;
+    let ticking = false;
+    let isGridVisible = false;
+
+    const gridObserver = new IntersectionObserver(
+      (entries) => {
+        isGridVisible = entries.some((entry) => entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+
+    interactiveGrids.forEach((grid) => gridObserver.observe(grid));
+
+    window.addEventListener(
+      'mousemove',
+      (e) => {
+        if (!isGridVisible || ticking) return;
+        ticking = true;
+
+        window.requestAnimationFrame(() => {
+          const elements = document.elementsFromPoint(e.clientX, e.clientY) || [];
+          const square = elements.find(
+            (el) =>
+              el.classList.contains('shape-square') &&
+              el.parentElement?.getAttribute('data-interactive') === 'true'
+          );
+
+          if (hoveredSquare && hoveredSquare !== square) {
+            hoveredSquare.classList.remove('mouse-active');
+          }
+          if (square && hoveredSquare !== square) {
+            square.classList.add('mouse-active');
+          }
+          hoveredSquare = square || null;
+          ticking = false;
+        });
+      },
+      { passive: true }
+    );
+  }
+</script>

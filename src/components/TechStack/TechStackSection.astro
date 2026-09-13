@@ -1,0 +1,73 @@
+---
+const techCategories = [
+  {
+    category: "Cloud Backend & APIs",
+    description: "Framework berkecepatan tinggi dengan type-safety mutlak dan arsitektur modular.",
+    techs: ["Fastify", "TypeScript", "Node.js", "Python FastAPI", "Go (Golang)"],
+  },
+  {
+    category: "Smart IoT & Telemetry",
+    description: "Protokol komunikasi hardware instan dengan konsumsi daya dan latensi minimal.",
+    techs: ["MQTT.js", "ESP32", "WebSockets", "Mosquitto", "Embedded C/C++"],
+  },
+  {
+    category: "AI & Intelligent Automation",
+    description: "Integrasi model mutakhir, retrieval vectors, dan sistem autonomous agent.",
+    techs: ["LangChain", "OpenAI / Gemini", "pgvector", "RAG Pipelines", "Hugging Face"],
+  },
+  {
+    category: "High-Performance Frontend",
+    description: "Antarmuka responsif tanpa beban bundle berlebih dan fluid micro-interactions.",
+    techs: ["Svelte 5", "Astro", "Tailwind CSS v4", "Lenis Scroll", "Motion"],
+  },
+  {
+    category: "Data & Cloud Infrastructure",
+    description: "Penyimpanan data relasional andal, containerization, dan edge deployment.",
+    techs: ["PostgreSQL", "Prisma ORM", "Docker & Compose", "Redis", "Cloudflare"],
+  },
+];
+---
+
+<section id="tech-stack" class="relative w-full py-24 sm:py-32 px-6 sm:px-10 lg:px-12 bg-slate-50 border-t border-slate-200/80">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-100 text-cyan-900 border border-cyan-300/60 text-xs font-bold uppercase tracking-wider mb-4">
+        Teknologi & Standar
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black text-dark tracking-tight leading-tight">
+        Modern Tech Stack Tanpa Kompromi
+      </h2>
+      <p class="mt-4 text-slate-600 text-base sm:text-lg">
+        Kami memilih toolchain yang terbukti stabil, cepat, dan memiliki developer experience terbaik untuk menjamin siklus rilis yang lincah dan minim technical debt.
+      </p>
+    </div>
+
+    <!-- Tech Categories Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        techCategories.map((cat, idx) => (
+          <div class={`p-6 sm:p-8 rounded-2xl bg-white border border-slate-200/80 hover:border-cyan-500/40 transition-all duration-200 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-950/5 flex flex-col justify-between ${idx === 0 ? 'lg:col-span-2' : ''}`}>
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-lg font-bold text-dark">{cat.category}</h3>
+                <span class="text-xs font-mono font-semibold text-cyan-600">0{idx + 1}</span>
+              </div>
+              <p class="text-slate-500 text-xs sm:text-sm mb-6 leading-relaxed">
+                {cat.description}
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-100">
+              {cat.techs.map((t) => (
+                <span class="px-3 py-1 rounded-lg bg-slate-100 text-slate-800 text-xs font-mono font-medium hover:bg-cyan-50 hover:text-cyan-800 transition-colors">
+                  {t}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

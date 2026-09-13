@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Figtree", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Satoshi", "Figtree", sans-serif;
+
+  --breakpoint-mini: 484px;
+  --breakpoint-mob: 420px;
+
+  --tracking-tighter: -0.04em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+
+  --leading-100: 100%;
+  --leading-120: 120%;
+  --leading-140: 140%;
+  --leading-150: 150%;
+
+  --color-dark: #0f172a;
+  --color-brand-primary: #5194ea;
+  --color-brand-magic: #8b5cf6;
+  --color-brand-deep: #0f172a;
+  --color-brand-soft: #e6f0ff;
+  --color-brand-accent: #d4af57;
+
+  /* Aliases for convenience */
+  --color-blue-brand: #5194ea;
+  --color-violet-brand: #8b5cf6;
+  --color-gold-brand: #d4af57;
+}
+
+@layer base {
+  html {
+    background-color: #ffffff;
+    color: #0f172a;
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    scroll-behavior: auto; /* Managed by Lenis */
+  }
+
+  ::selection {
+    background-color: #8b5cf6;
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(226, 232, 240, 0.85);
+  }
+
+  .glass-card-dark {
+    background: rgba(15, 23, 42, 0.88);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(81, 148, 234, 0.25);
+  }
+
+  .text-gradient-magic {
+    background: linear-gradient(135deg, #5194ea 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .bg-gradient-magic {
+    background: linear-gradient(135deg, #5194ea 0%, #8b5cf6 100%);
+  }
+
+  .border-gradient-magic {
+    border-image: linear-gradient(to right, #5194ea, #8b5cf6) 1;
+  }
+
+  .text-glow-magic {
+    text-shadow: 0 0 24px rgba(139, 92, 246, 0.45);
+  }
+
+  .box-glow-magic {
+    box-shadow: 0 10px 40px -10px rgba(81, 148, 234, 0.35);
+  }
+
+  .no-text-fill-color {
+    -webkit-text-fill-color: initial;
+    text-fill-color: initial;
+  }
+}

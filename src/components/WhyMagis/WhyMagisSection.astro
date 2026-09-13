@@ -1,0 +1,116 @@
+---
+const values = [
+  {
+    step: "01",
+    keyword: "Understand",
+    sub: "Pahami Masalah",
+    title: "Memahami Problem Sebelum Menulis Kode",
+    desc: "Kami tidak langsung melompat ke teknis. Kami membedah proses kerja Anda, menemukan bottleneck sesungguhnya, dan memastikan akar masalah telah didefinisikan dengan jelas.",
+    motif: "Connection",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.383a14.406 14.406 0 01-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 10-7.516 0c.85.493 1.509 1.333 1.509 2.316V18" />`
+  },
+  {
+    step: "02",
+    keyword: "Simple",
+    sub: "Sederhanakan Alur",
+    title: "Kompleksitas yang Terasa Sederhana",
+    desc: "Di balik arsitektur database dan server yang rumit, pengguna Anda hanya merasakan antarmuka yang bersih, cepat dipelajari, dan menyenangkan saat digunakan setiap hari.",
+    motif: "Trust",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-2.171-7.144A7.5 7.5 0 002.25 12c0 2.823 1.56 5.282 3.87 6.557m13.76-6.557a7.5 7.5 0 00-10.741-6.894" />`
+  },
+  {
+    step: "03",
+    keyword: "Practical",
+    sub: "Berdampak Nyata",
+    title: "Solusi Nyata, Bukan Sekadar Tren",
+    desc: "Kami memilih teknologi yang tepat guna dan bernilai efisiensi nyata untuk bisnis Anda, bukan sekadar menumpuk teknologi populer tanpa dampak bisnis yang jelas.",
+    motif: "Possibility",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5m.75-9l3-3 2.143 2.143L15.75 6" />`
+  },
+  {
+    step: "04",
+    keyword: "Reliable",
+    sub: "Ketenangan Berkelanjutan",
+    title: "Sistem Tangguh & Siap Tumbuh Jangka Panjang",
+    desc: "Dirancang dengan standar industri: aman dari celah kebocoran data, bebas dari technical debt yang menjebak, dan siap di-scale kapan saja ketika bisnis Anda melesat.",
+    motif: "Solution",
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-2.171-7.144A7.5 7.5 0 002.25 12c0 2.823 1.56 5.282 3.87 6.557m13.76-6.557a7.5 7.5 0 00-10.741-6.894" />`
+  }
+];
+---
+
+<section id="why-magis" class="relative w-full py-24 sm:py-32 px-6 sm:px-10 lg:px-12 bg-white">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#8b5cf6]/10 text-[#8b5cf6] border border-[#8b5cf6]/25 text-xs font-bold uppercase tracking-wider mb-4">
+        Filosofi Studio
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black text-[#0f172a] tracking-tight leading-tight">
+        Why Magis?
+      </h2>
+      <p class="mt-4 text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
+        Banyak agency menjanjikan <span class="italic font-normal">"build digital solutions"</span>. Sistemagis berkomitmen lebih dalam: <strong class="text-[#0f172a]">kami membereskan solusi</strong> dan memberikan ketenangan nyata bagi pemilik bisnis.
+      </p>
+    </div>
+
+    <!-- 4 Values Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {
+        values.map((v) => (
+          <div class="p-8 sm:p-10 rounded-3xl bg-slate-50 border border-slate-200/80 hover:border-[#8b5cf6]/50 hover:bg-gradient-to-br hover:from-white hover:to-[#8b5cf6]/5 transition-all duration-300 group hover:shadow-xl hover:shadow-[#8b5cf6]/5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-6">
+                <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-[#8b5cf6] bg-[#8b5cf6]/10 px-3 py-1 rounded-full">
+                  <span>{v.step}</span>
+                  <span>•</span>
+                  <span>{v.keyword}</span>
+                </span>
+                <span class="text-xs font-bold text-slate-400 uppercase tracking-widest font-mono">
+                  {v.motif}
+                </span>
+              </div>
+
+              <h3 class="text-xl sm:text-2xl font-bold text-[#0f172a] tracking-tight mb-3 group-hover:text-[#8b5cf6] transition-colors">
+                {v.title}
+              </h3>
+
+              <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                {v.desc}
+              </p>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-slate-200/60 flex items-center justify-between text-xs font-semibold text-slate-500">
+              <span class="text-[#5194ea] font-medium">{v.sub}</span>
+              <span class="text-slate-400">Sistemagis Standard</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Philosophy Motif Banner: Connection -> Trust -> Possibility -> Solution -->
+    <div class="mt-16 p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#0f172a] text-white relative overflow-hidden shadow-2xl">
+      <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-[#8b5cf6]">Janji Brand Sistemagis</span>
+          <h3 class="text-xl sm:text-2xl font-bold tracking-tight mt-1 text-white">
+            "Problem dipahami → Proses dirapikan → Solusi dibereskan."
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-300 mt-2 max-w-2xl">
+            Kami menjual ketenangan karena Anda tahu sistem digital bisnis Anda berada di tangan tim rekayasa yang peduli pada kualitas dan hasil akhir.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3 shrink-0">
+          <a
+            href="#contact"
+            class="px-6 py-3 rounded-xl bg-white text-[#0f172a] hover:bg-slate-100 font-bold text-xs uppercase tracking-wider transition-all shadow-md hover:scale-105"
+          >
+            Konsultasi dengan Kami
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

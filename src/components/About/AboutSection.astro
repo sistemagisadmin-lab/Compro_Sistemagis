@@ -1,0 +1,112 @@
+---
+import iconGradient from '../../images/icon sistemagis gradient.png';
+
+const techGroups = [
+  {
+    category: "Web & Frontend",
+    items: ["Astro", "React", "Next.js", "Svelte", "Tailwind CSS"],
+  },
+  {
+    category: "Backend & Systems",
+    items: ["Node.js", "Fastify", "TypeScript", "Python", "Laravel"],
+  },
+  {
+    category: "Database & Cloud",
+    items: ["PostgreSQL", "Redis", "Docker", "Cloudflare", "Supabase"],
+  },
+  {
+    category: "AI & Automation",
+    items: ["LLM Integration", "Custom RAG", "pgvector", "n8n", "REST APIs"],
+  },
+];
+---
+
+<section id="about" class="relative w-full py-24 sm:py-32 px-6 sm:px-10 lg:px-12 bg-slate-50 border-t border-slate-200/80">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="max-w-3xl mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#5194ea]/10 text-[#5194ea] border border-[#5194ea]/25 text-xs font-bold uppercase tracking-wider mb-4">
+        Tentang Sistemagis
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-black text-[#0f172a] tracking-tight leading-tight">
+        We believe technology should make things better, not harder.
+      </h2>
+      <p class="mt-6 text-base sm:text-xl text-slate-600 leading-relaxed font-medium">
+        <strong class="text-[#0f172a]">Sistemagis</strong> adalah digital product & solution studio yang berfokus pada pembuatan sistem digital, produk SaaS, dan solusi teknologi untuk bisnis. Kami membangun produk kami sendiri sekaligus membantu klien mengubah kebutuhan dan masalah bisnis menjadi solusi digital yang siap pakai.
+      </p>
+    </div>
+
+    <!-- Dual Business Model Split Showcase -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <!-- Side 1: Products -->
+      <div class="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 hover:border-[#8b5cf6]/40 transition-all shadow-sm">
+        <div class="w-12 h-12 rounded-2xl bg-[#8b5cf6]/10 flex items-center justify-center text-[#8b5cf6] font-bold text-lg mb-6">
+          01
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-[#8b5cf6]">Dual-Track Pillar</span>
+        <h3 class="text-2xl font-black text-[#0f172a] tracking-tight mt-1 mb-3">
+          Sistemagis Products
+        </h3>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+          Membangun produk digital mandiri yang menyelesaikan kebutuhan nyata industri seperti KisahMagis (Wedding Tech), MagisPhotobooth (Event Tech), dan SistemKost (Property Management).
+        </p>
+        <div class="flex items-center gap-2 text-xs font-bold text-[#8b5cf6] uppercase tracking-wider">
+          <span>In-House Products</span>
+          <span>•</span>
+          <span>Scalable SaaS</span>
+        </div>
+      </div>
+
+      <!-- Side 2: Solutions -->
+      <div class="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 hover:border-[#5194ea]/40 transition-all shadow-sm">
+        <div class="w-12 h-12 rounded-2xl bg-[#5194ea]/10 flex items-center justify-center text-[#5194ea] font-bold text-lg mb-6">
+          02
+        </div>
+        <span class="text-xs font-bold uppercase tracking-widest text-[#5194ea]">Dual-Track Pillar</span>
+        <h3 class="text-2xl font-black text-[#0f172a] tracking-tight mt-1 mb-3">
+          Sistemagis Solutions
+        </h3>
+        <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+          Menerima dan membereskan kebutuhan teknologi dari klien: company profile kustom, sistem operasional internal, arsitektur SaaS, automasi bisnis, hingga integrasi kecerdasan buatan.
+        </p>
+        <div class="flex items-center gap-2 text-xs font-bold text-[#5194ea] uppercase tracking-wider">
+          <span>Client Tailored</span>
+          <span>•</span>
+          <span>Production Ready</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Stack Foundation (Supporting Elements) -->
+    <div class="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200/90">
+      <div class="max-w-2xl mb-8">
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-400">Fondasi Rekayasa</span>
+        <h3 class="text-xl sm:text-2xl font-bold text-[#0f172a] tracking-tight mt-1">
+          Modern, Resilient & Battle-Tested Tech Stack
+        </h3>
+        <p class="text-slate-600 text-xs sm:text-sm mt-2 leading-relaxed">
+          Teknologi adalah sarana untuk memberikan hasil yang terbaik. Kami memilih toolchain yang terbukti cepat, minim dependensi rapuh, dan mudah dipelihara.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {
+          techGroups.map((group) => (
+            <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200/70">
+              <h4 class="text-xs font-bold uppercase tracking-wider text-[#0f172a] mb-3">
+                {group.category}
+              </h4>
+              <div class="flex flex-wrap gap-1.5">
+                {group.items.map((item) => (
+                  <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200 text-slate-700 text-xs font-mono font-medium shadow-2xs">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>

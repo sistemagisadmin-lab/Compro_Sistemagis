@@ -1,0 +1,132 @@
+---
+import './navbar.css';
+import iconGradient from '../../images/icon sistemagis gradient.png';
+
+const desktopNavigation = [
+  { name: 'Products', href: '#products' },
+  { name: 'Solutions', href: '#solutions' },
+  { name: 'Works', href: '#works' },
+  { name: 'About', href: '#about' },
+];
+
+const mobileNavigation = [
+  {
+    name: 'Home',
+    href: '#header',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.592 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />`,
+  },
+  {
+    name: 'Products',
+    href: '#products',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />`,
+  },
+  {
+    name: 'Solutions',
+    href: '#solutions',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />`,
+  },
+  {
+    name: 'Works',
+    href: '#works',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m11.142 0l4.179-2.25-4.179-2.25m-5.571 6.75l2.857-13.5" />`,
+  },
+  {
+    name: 'About',
+    href: '#about',
+    icon: `<path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />`,
+  },
+];
+---
+
+<!-- Desktop Floating Pill Navbar (Top) -->
+<div id="navbar-root" class="fixed top-0 inset-x-0 z-50 pointer-events-none hidden md:block">
+  <header class="py-4 md:py-6">
+    <nav
+      class="relative mx-auto flex max-w-6xl items-center justify-between px-6"
+      aria-label="Desktop Navigation"
+    >
+      <!-- Brand Logo Left -->
+      <a
+        href="#header"
+        class="pointer-events-auto flex items-center gap-3 px-4 py-2 rounded-full glass-card-dark border border-[#5194ea]/30 text-white font-bold tracking-tight text-lg shadow-lg hover:border-[#8b5cf6]/60 transition-all group"
+      >
+        <div class="w-7 h-7 rounded-lg overflow-hidden flex items-center justify-center p-0.5 shadow-sm group-hover:scale-105 transition-transform">
+          <img src={iconGradient.src} alt="Sistemagis Icon" class="w-full h-full object-contain" />
+        </div>
+        <span class="font-bold tracking-tight text-white">Sistemagis<span class="text-[#8b5cf6]">.</span></span>
+      </a>
+
+      <!-- Middle Floating Nav Links -->
+      <div
+        id="nav"
+        class="pointer-events-auto flex relative items-center rounded-full px-3 py-1.5 nav-hidden theme-magic shadow-xl"
+      >
+        <div class="nav-pointer"></div>
+        {
+          desktopNavigation.map((item) => (
+            <a
+              href={item.href}
+              class="nav-item relative z-10 py-1.5 px-4 text-sm font-semibold transition-colors duration-200 cursor-pointer select-none"
+            >
+              {item.name}
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Right Action CTA -->
+      <a
+        href="#contact"
+        class="pointer-events-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-gradient-to-r from-[#5194ea] to-[#8b5cf6] hover:from-[#4382d6] hover:to-[#7c4def] shadow-[0_4px_20px_rgba(139,92,246,0.35)] transition-all hover:scale-105"
+      >
+        <span>Let's Talk</span>
+        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+    </nav>
+  </header>
+</div>
+
+<!-- Mobile Floating App Bottom Dock Navigation -->
+<div id="mobile-nav-root" class="fixed bottom-5 inset-x-0 z-50 pointer-events-none flex justify-center px-4 md:hidden">
+  <nav
+    id="mobile-nav"
+    class="pointer-events-auto inline-flex items-center justify-center gap-1.5 rounded-full p-2 shadow-2xl backdrop-blur-2xl theme-cyan"
+    aria-label="Mobile Navigation"
+  >
+    {
+      mobileNavigation.map((item) => (
+        <a
+          href={item.href}
+          aria-label={item.name}
+          title={item.name}
+          class="mobile-tab relative flex items-center justify-center w-11 h-11 rounded-full transition-all duration-300 select-none cursor-pointer group"
+          data-href={item.href}
+        >
+          <div class="mobile-icon-wrapper relative z-10 flex items-center justify-center transition-transform duration-300">
+            <svg
+              class="w-5 h-5 transition-colors duration-300"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+              set:html={item.icon}
+            />
+          </div>
+          <div class="mobile-active-pill absolute inset-0 rounded-full opacity-0 scale-75 transition-all duration-300 z-0"></div>
+        </a>
+      ))
+    }
+  </nav>
+</div>
+
+<script>
+  import { initNavbar } from './navbarTransitions';
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNavbar);
+  } else {
+    initNavbar();
+  }
+</script>

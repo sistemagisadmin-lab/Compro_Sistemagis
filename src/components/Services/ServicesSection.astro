@@ -1,0 +1,25 @@
+---
+import ServicesExplorer from './ServicesExplorer.svelte';
+---
+
+<section id="services" class="relative w-full py-24 sm:py-32 px-6 sm:px-10 lg:px-12 bg-slate-50 border-t border-slate-200/80">
+  <div class="max-w-6xl mx-auto">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16">
+      <div class="max-w-2xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-cyan-100 text-cyan-900 border border-cyan-300/60 text-xs font-bold uppercase tracking-wider mb-4">
+          Layanan & Kapabilitas
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-dark tracking-tight leading-tight">
+          Solusi Teknologi Terintegrasi End-to-End
+        </h2>
+      </div>
+      <p class="text-slate-600 text-base sm:text-lg max-w-md">
+        Kami merancang ekosistem komprehensif mulai dari integrasi hardware IoT tingkat rendah hingga cloud backend dan kecerdasan artifisial.
+      </p>
+    </div>
+
+    <!-- Svelte Interactive Island -->
+    <ServicesExplorer client:visible />
+  </div>
+</section>
