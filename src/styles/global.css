@@ -18,16 +18,16 @@
   --leading-150: 150%;
 
   --color-dark: #0f172a;
-  --color-brand-primary: #5194ea;
-  --color-brand-magic: #8b5cf6;
+  --color-brand-primary: #4379bf;
+  --color-brand-magic: #4379bf;
   --color-brand-deep: #0f172a;
-  --color-brand-soft: #e6f0ff;
-  --color-brand-accent: #d4af57;
+  --color-brand-soft: #eaf1fa;
+  --color-brand-accent: #4379bf;
 
   /* Aliases for convenience */
-  --color-blue-brand: #5194ea;
-  --color-violet-brand: #8b5cf6;
-  --color-gold-brand: #d4af57;
+  --color-blue-brand: #4379bf;
+  --color-violet-brand: #4379bf;
+  --color-gold-brand: #4379bf;
 }
 
 @layer base {
@@ -61,25 +61,23 @@
   }
 
   .text-gradient-magic {
-    background: linear-gradient(135deg, #5194ea 0%, #8b5cf6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #4379bf;
   }
 
   .bg-gradient-magic {
-    background: linear-gradient(135deg, #5194ea 0%, #8b5cf6 100%);
+    background-color: #4379bf;
   }
 
   .border-gradient-magic {
-    border-image: linear-gradient(to right, #5194ea, #8b5cf6) 1;
+    border-color: #4379bf;
   }
 
   .text-glow-magic {
-    text-shadow: 0 0 24px rgba(139, 92, 246, 0.45);
+    text-shadow: 0 0 16px rgba(67, 121, 191, 0.35);
   }
 
   .box-glow-magic {
-    box-shadow: 0 10px 40px -10px rgba(81, 148, 234, 0.35);
+    box-shadow: 0 10px 30px -10px rgba(67, 121, 191, 0.3);
   }
 
   .no-text-fill-color {
