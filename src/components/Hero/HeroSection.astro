@@ -5,7 +5,7 @@ import iconGradient from '../../images/icon sistemagis gradient.png';
 
 <section
   id="header"
-  class="relative w-full min-h-[94vh] sm:min-h-screen flex flex-col justify-between pt-16 pb-16 sm:pb-24 lg:pb-28 overflow-hidden bg-white"
+  class="relative w-full min-h-screen flex flex-col justify-between pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden bg-white"
 >
   <!-- Background Shape Grid -->
   <ShapeGrid interactive={true} />
@@ -13,13 +13,10 @@ import iconGradient from '../../images/icon sistemagis gradient.png';
   <!-- Background Ambient Glows -->
   <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#4379bf]/10 rounded-full blur-3xl pointer-events-none -z-0"></div>
 
-  <!-- Top spacing for fixed navbar -->
-  <div class="h-10 sm:h-16 w-full"></div>
-
-  <!-- Hero Content Container -->
-  <div class="relative z-20 mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-12 my-auto">
+  <!-- Hero Content Container (Centered Vertically) -->
+  <div class="relative z-20 mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-12 my-auto py-8 sm:py-12 flex flex-col items-center text-center">
     <!-- Main Title: "We Make Digital Solutions Feel Magis." -->
-    <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-black tracking-tighter text-[#0f172a] leading-[1.02] max-w-5xl">
+    <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-black tracking-tighter text-[#0f172a] leading-[1.02] max-w-5xl mx-auto">
       We Make
       <span class="relative inline-block text-[#4379bf]">
         Digital Solutions
@@ -29,17 +26,17 @@ import iconGradient from '../../images/icon sistemagis gradient.png';
     </h1>
 
     <!-- Subtitle -->
-    <p class="mt-6 sm:mt-8 text-lg sm:text-xl md:text-2xl text-slate-600 max-w-3xl font-medium leading-relaxed">
+    <p class="mt-6 sm:mt-8 text-lg sm:text-xl md:text-2xl text-slate-600 max-w-3xl font-medium leading-relaxed mx-auto">
       Sistemagis membangun produk dan solusi digital yang membantu bisnis bekerja lebih sederhana, terhubung, dan siap berkembang. Dari masalah yang rumit menjadi hasil yang beres.
     </p>
 
     <!-- CTAs -->
-    <div class="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
+    <div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
       <a
         href="#contact"
         class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-white font-bold text-sm bg-[#4379bf] hover:bg-[#3664a0] shadow-md transition-all duration-200 hover:-translate-y-0.5"
       >
-        <span>Mulai Proyek (Start a Project)</span>
+        <span>Mulai Proyek</span>
         <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
           <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
         </svg>
@@ -55,56 +52,13 @@ import iconGradient from '../../images/icon sistemagis gradient.png';
         </svg>
       </a>
     </div>
-
-    <!-- Dual Business Pillar Quick Glance (Products & Solutions) -->
-    <div class="mt-14 sm:mt-16 pt-8 border-t border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl">
-      <div class="flex items-start gap-3">
-        <div class="w-9 h-9 rounded-xl bg-[#4379bf]/10 flex items-center justify-center text-[#4379bf] shrink-0 mt-0.5 font-bold">
-          01
-        </div>
-        <div>
-          <div class="text-base font-bold text-[#0f172a] tracking-tight">Digital Products</div>
-          <div class="text-xs text-slate-500 font-medium mt-0.5">KisahMagis · Photobooth · SistemKost</div>
-        </div>
-      </div>
-
-      <div class="flex items-start gap-3">
-        <div class="w-9 h-9 rounded-xl bg-[#4379bf]/10 flex items-center justify-center text-[#4379bf] shrink-0 mt-0.5 font-bold">
-          02
-        </div>
-        <div>
-          <div class="text-base font-bold text-[#0f172a] tracking-tight">Client Solutions</div>
-          <div class="text-xs text-slate-500 font-medium mt-0.5">Custom System · SaaS · Automation · Web</div>
-        </div>
-      </div>
-
-      <div class="flex items-start gap-3">
-        <div class="w-9 h-9 rounded-xl bg-[#0f172a]/10 flex items-center justify-center text-[#0f172a] shrink-0 mt-0.5 font-bold">
-          03
-        </div>
-        <div>
-          <div class="text-base font-bold text-[#0f172a] tracking-tight">Janji "Beres"</div>
-          <div class="text-xs text-slate-500 font-medium mt-0.5">Masalah dipahami, proses dirapikan</div>
-        </div>
-      </div>
-
-      <div class="flex items-start gap-3">
-        <div class="w-9 h-9 rounded-xl bg-[#d4af57]/15 flex items-center justify-center text-[#b89035] shrink-0 mt-0.5 font-bold">
-          04
-        </div>
-        <div>
-          <div class="text-base font-bold text-[#0f172a] tracking-tight">Sentuhan "Magis"</div>
-          <div class="text-xs text-slate-500 font-medium mt-0.5">Teknologi rumit terasa sederhana</div>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- Bottom Scroll Hint Indicator -->
-  <div class="relative z-10 mx-auto mt-8 flex flex-col items-center pointer-events-none opacity-70 hover:opacity-100 transition-opacity">
+  <div class="relative z-10 mx-auto mt-auto pt-4 flex flex-col items-center pointer-events-none opacity-70 hover:opacity-100 transition-opacity">
     <span class="text-xs font-semibold tracking-wider text-slate-400 uppercase">Scroll untuk eksplorasi</span>
     <div class="w-5 h-8 mt-2 rounded-full border-2 border-slate-300 flex items-start justify-center p-1">
-      <div class="w-1 h-2 bg-gradient-to-b from-[#5194ea] to-[#8b5cf6] rounded-full animate-bounce"></div>
+      <div class="w-1 h-2 bg-[#4379bf] rounded-full animate-bounce"></div>
     </div>
   </div>
 </section>

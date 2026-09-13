@@ -1,6 +1,6 @@
 ---
 import './navbar.css';
-import iconGradient from '../../images/icon sistemagis gradient.png';
+import iconLogo from '../../images/icon sistemagis.png';
 
 const desktopNavigation = [
   { name: 'Products', href: '#products' },
@@ -42,18 +42,18 @@ const mobileNavigation = [
 <div id="navbar-root" class="fixed top-0 inset-x-0 z-50 pointer-events-none hidden md:block">
   <header class="py-4 md:py-6">
     <nav
-      class="relative mx-auto flex max-w-6xl items-center justify-between px-6"
+      class="relative w-full flex items-center justify-between px-6 sm:px-10 lg:px-12"
       aria-label="Desktop Navigation"
     >
-      <!-- Brand Logo Left -->
+      <!-- Brand Logo Left (Pojok Kiri) -->
       <a
         href="#header"
-        class="pointer-events-auto flex items-center gap-3 px-4 py-2 rounded-full glass-card-dark border border-[#5194ea]/30 text-white font-bold tracking-tight text-lg shadow-lg hover:border-[#8b5cf6]/60 transition-all group"
+        class="pointer-events-auto flex items-center gap-3 px-4 py-2 rounded-full glass-card-dark border border-[#4379bf]/30 text-white font-bold tracking-tight text-lg shadow-lg hover:border-[#4379bf]/60 transition-all group"
       >
         <div class="w-7 h-7 rounded-lg overflow-hidden flex items-center justify-center p-0.5 shadow-sm group-hover:scale-105 transition-transform">
-          <img src={iconGradient.src} alt="Sistemagis Icon" class="w-full h-full object-contain" />
+          <img src={iconLogo.src} alt="Sistemagis Icon" class="w-full h-full object-contain" />
         </div>
-        <span class="font-bold tracking-tight text-white">Sistemagis<span class="text-[#8b5cf6]">.</span></span>
+        <span class="font-bold tracking-tight text-white">Sistemagis<span class="text-[#4379bf]">.</span></span>
       </a>
 
       <!-- Middle Floating Nav Links -->
@@ -74,7 +74,7 @@ const mobileNavigation = [
         }
       </div>
 
-      <!-- Right Action CTA -->
+      <!-- Right Action CTA (Pojok Kanan) -->
       <a
         href="#contact"
         class="pointer-events-auto inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-[#4379bf] hover:bg-[#3664a0] shadow-md transition-all hover:scale-105"
