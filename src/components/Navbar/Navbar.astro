@@ -1,6 +1,7 @@
 ---
 import './navbar.css';
-import iconLogo from '../../images/icon sistemagis.png';
+import logoWithDarkText from '../../images/Logo sistemagis with dark text.png';
+import logoWithWhiteText from '../../images/logo sistemagis with text.png';
 
 const desktopNavigation = [
   { name: 'Products', href: '#products' },
@@ -48,12 +49,21 @@ const mobileNavigation = [
       <!-- Brand Logo Left (Pojok Kiri) -->
       <a
         href="#header"
-        class="pointer-events-auto flex items-center gap-3 px-4 py-2 rounded-full glass-card-dark border border-[#4379bf]/30 text-white font-bold tracking-tight text-lg shadow-lg hover:border-[#4379bf]/60 transition-all group"
+        class="pointer-events-auto flex items-center px-4 py-2 rounded-full glass-card dark:glass-card-dark border border-slate-200/80 dark:border-[#4379bf]/30 shadow-sm dark:shadow-lg hover:border-[#4379bf]/60 transition-all group brand-logo-pill"
+        aria-label="Sistemagis Home"
       >
-        <div class="w-7 h-7 rounded-lg overflow-hidden flex items-center justify-center p-0.5 shadow-sm group-hover:scale-105 transition-transform">
-          <img src={iconLogo.src} alt="Sistemagis Icon" class="w-full h-full object-contain" />
-        </div>
-        <span class="font-bold tracking-tight text-white">Sistemagis<span class="text-[#4379bf]">.</span></span>
+        <!-- Mode Terang (Dark text) -->
+        <img
+          src={logoWithDarkText.src}
+          alt="Sistemagis"
+          class="h-7 sm:h-8 w-auto object-contain brand-logo-light group-hover:scale-105 transition-transform"
+        />
+        <!-- Mode Gelap (Light/White text) -->
+        <img
+          src={logoWithWhiteText.src}
+          alt="Sistemagis"
+          class="h-7 sm:h-8 w-auto object-contain brand-logo-dark group-hover:scale-105 transition-transform"
+        />
       </a>
 
       <!-- Middle Floating Nav Links -->

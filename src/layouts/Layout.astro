@@ -11,10 +11,11 @@ interface Props {
 const {
   title = "Sistemagis — Digital Product & Solution Studio | We Make Digital Solutions Feel Magis",
   description = "Sistemagis adalah digital product & solution studio yang membangun produk digital sendiri (KisahMagis, Photobooth, SistemKost) dan solusi sistem bisnis kustom (Web, SaaS, Automation & AI). Bereskan Solusi. Bikin Magis.",
-  image = "/favicon.svg",
+  image = "/favicon.png",
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sistemagis.com");
+const ogImageURL = new URL(image, Astro.site || "https://sistemagis.com").toString();
 ---
 
 <!doctype html>
@@ -22,10 +23,16 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sistemag
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
 
     <!-- Canonical URL -->
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Robots & Crawler Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     <!-- Fonts Preloading -->
     <link
@@ -59,46 +66,148 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://sistemag
     <meta name="author" content="Sistemagis Studio" />
     <meta
       name="keywords"
-      content="Sistemagis, Digital Product Studio, Solution Studio, KisahMagis, SistemKost, MagisPhotobooth, Web Development, SaaS Development, Custom Business System, Automation, AI Solutions, Software House Indonesia"
+      content="Sistemagis, Digital Product Studio, Solution Studio, Software House Bandung, Jasa Pembuatan Website, Jasa Pembuatan SaaS, KisahMagis, SistemKost, MagisPhotobooth, Web Development Indonesia, Custom Business System, Otomasi Bisnis, AI Solution Studio"
     />
     <meta name="theme-color" content="#0f172a" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="revisit-after" content="7 days" />
+    <meta name="rating" content="general" />
+
+    <!-- Geo Meta Tags -->
+    <meta name="geo.region" content="ID-JB" />
+    <meta name="geo.placename" content="Bandung" />
+    <meta name="geo.position" content="-6.917464;107.619123" />
+    <meta name="ICBM" content="-6.917464, 107.619123" />
 
     <!-- Open Graph / Facebook / LinkedIn -->
     <meta property="og:site_name" content="Sistemagis" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="id_ID" />
+    <meta property="og:locale:alternate" content="en_US" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={ogImageURL} />
+    <meta property="og:image:secure_url" content={ogImageURL} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Sistemagis — Digital Product & Solution Studio" />
 
     <!-- Twitter / X -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalURL} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={image} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageURL} />
+    <meta name="twitter:image:alt" content="Sistemagis — Digital Product & Solution Studio" />
 
-    <!-- Schema.org JSON-LD -->
+    <!-- Schema.org Multi-Graph Structured Data -->
     <script
       type="application/ld+json"
       is:inline
       set:html={JSON.stringify({
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Sistemagis",
-        "alternateName": "Sistemagis Studio",
-        "url": "https://sistemagis.com",
-        "logo": "https://sistemagis.com/favicon.svg",
-        "description": "Digital product & solution studio yang membangun teknologi untuk membereskan masalah dan menciptakan pengalaman digital bernilai magis.",
-        "slogan": "Bereskan Solusi. Bikin Magis.",
-        "foundingLocation": "Indonesia",
-        "knowsAbout": [
-          "Digital Product Studio",
-          "Custom Business Management System",
-          "SaaS Engineering",
-          "Enterprise Automation & AI Solutions",
-          "Web & Mobile Platforms"
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://sistemagis.com/#website",
+            "url": "https://sistemagis.com/",
+            "name": "Sistemagis",
+            "description": "Digital product & solution studio yang membangun produk digital mandiri dan solusi sistem bisnis kustom.",
+            "inLanguage": "id-ID",
+            "publisher": {
+              "@id": "https://sistemagis.com/#organization"
+            }
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://sistemagis.com/#organization",
+            "name": "Sistemagis",
+            "legalName": "Sistemagis Studio",
+            "alternateName": ["Sistemagis Digital Studio", "Sistemagis Indonesia"],
+            "url": "https://sistemagis.com",
+            "logo": "https://sistemagis.com/favicon.png",
+            "image": "https://sistemagis.com/og-image.png",
+            "description": "Sistemagis adalah digital product & solution studio yang merancang & membangun produk digital sendiri (KisahMagis, Photobooth, SistemKost) dan solusi sistem bisnis kustom (Web, SaaS, Automation & AI). Bereskan Solusi. Bikin Magis.",
+            "slogan": "We Make Digital Solutions Feel Magis",
+            "email": "kontak@sistemagis.com",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bandung",
+              "addressRegion": "Jawa Barat",
+              "addressCountry": "ID"
+            },
+            "sameAs": [
+              "https://www.instagram.com/sistemagis",
+              "https://github.com/sistemagisadmin-lab",
+              "https://www.linkedin.com/company/sistemagis"
+            ],
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "contactType": "Customer Service & Partnerships",
+                "availableLanguage": ["id", "en"]
+              }
+            ],
+            "knowsAbout": [
+              "Digital Product Development",
+              "Custom Business Management System",
+              "SaaS Architecture & Engineering",
+              "Enterprise Automation & AI Solutions",
+              "Web & Mobile Platforms",
+              "Photobooth Software Systems",
+              "Event Tech & Digital Invitation Platforms"
+            ]
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://sistemagis.com/#products-services",
+            "name": "Produk & Solusi Sistemagis",
+            "description": "Portofolio produk digital mandiri dan layanan rekayasa sistem oleh Sistemagis Studio",
+            "itemListElement": [
+              {
+                "@type": "SoftwareApplication",
+                "name": "KisahMagis",
+                "applicationCategory": "EventApplication",
+                "operatingSystem": "Web Browser",
+                "description": "Platform digital invitation & visual event storytelling dengan visual sinematik, RSVP realtime, dan guest management."
+              },
+              {
+                "@type": "SoftwareApplication",
+                "name": "MagisPhotobooth",
+                "applicationCategory": "EventApplication",
+                "operatingSystem": "Web, Windows, Touchscreen Hardware",
+                "description": "Sistem interaktif photobooth untuk aktivasi brand, event korporat, dan eksibisi interaktif."
+              },
+              {
+                "@type": "SoftwareApplication",
+                "name": "SistemKost",
+                "applicationCategory": "BusinessApplication",
+                "operatingSystem": "Web Browser",
+                "description": "Sistem operasional dan manajemen kos modern, billing otomatis, pembukuan, serta monitoring kamar."
+              },
+              {
+                "@type": "Service",
+                "name": "Web & SaaS Architecture",
+                "serviceType": "Software Development",
+                "description": "Pengembangan web modern, performa tinggi, dan arsitektur platform SaaS yang scalable."
+              },
+              {
+                "@type": "Service",
+                "name": "Custom Business Systems",
+                "serviceType": "Business Process Digitalization",
+                "description": "Pembangunan sistem ERP, inventaris, invoicing, dan alur kerja operasional spesifik bisnis."
+              },
+              {
+                "@type": "Service",
+                "name": "Automation & AI Studio",
+                "serviceType": "Artificial Intelligence & Workflow Automation",
+                "description": "Otomasi alur kerja operasional, integrasi API, dan agen AI asisten bisnis."
+              }
+            ]
+          }
         ]
       })}
     />

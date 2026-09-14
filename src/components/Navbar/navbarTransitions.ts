@@ -1,10 +1,10 @@
 type ThemeName = 'magic' | 'dark';
 
-interface SectionConfig {
-  id: string;
-  theme: ThemeName;
-  navHref: string;
+interface SectionMapping {
+  sectionId: string;
+  desktopHref: string | null;
   mobileHref: string;
+  theme: ThemeName;
 }
 
 export function initNavbar(): void {
@@ -20,19 +20,31 @@ export function initNavbar(): void {
   let isNavVisible = false;
   let currentTheme: ThemeName = 'magic';
   let isClickScrolling = false;
-  let clickTimeout: ReturnType<typeof setTimeout>;
 
-  const targets: SectionConfig[] = [
-    { id: 'contact',   theme: 'dark',  navHref: '#contact',   mobileHref: '#contact' },
-    { id: 'about',     theme: 'magic', navHref: '#about',     mobileHref: '#about' },
-    { id: 'works',     theme: 'magic', navHref: '#works',     mobileHref: '#works' },
-    { id: 'solutions', theme: 'magic', navHref: '#solutions', mobileHref: '#solutions' },
-    { id: 'products',  theme: 'magic', navHref: '#products',  mobileHref: '#products' },
-    { id: 'header',    theme: 'magic', navHref: '#products',  mobileHref: '#header' },
+  // Complete mapping of every section in DOM order (from top to bottom)
+  // Ensures zero dead zones or incorrect backward jumps
+  const sectionSequence: SectionMapping[] = [
+    { sectionId: 'header',       desktopHref: null,         mobileHref: '#header',    theme: 'magic' },
+    { sectionId: 'what-we-do',   desktopHref: '#products',  mobileHref: '#header',    theme: 'magic' },
+    { sectionId: 'products',     desktopHref: '#products',  mobileHref: '#products',  theme: 'magic' },
+    { sectionId: 'solutions',    desktopHref: '#solutions', mobileHref: '#solutions', theme: 'magic' },
+    { sectionId: 'why-magis',    desktopHref: '#solutions', mobileHref: '#solutions', theme: 'magic' },
+    { sectionId: 'works',        desktopHref: '#works',     mobileHref: '#works',     theme: 'magic' },
+    { sectionId: 'how-we-work',  desktopHref: '#works',     mobileHref: '#works',     theme: 'magic' },
+    { sectionId: 'about',        desktopHref: '#about',     mobileHref: '#about',     theme: 'magic' },
+    { sectionId: 'contact',      desktopHref: '#about',     mobileHref: '#about',     theme: 'dark'  },
   ];
 
   const cleanDesktopActive = (): void => {
     navItems?.forEach((t) => t.classList.remove('active'));
+  };
+
+  const updatePointerPosition = (tab: HTMLAnchorElement): void => {
+    if (!navPointer) return;
+    navPointer.style.opacity = '1';
+    navPointer.style.width = `${tab.offsetWidth}px`;
+    navPointer.style.height = `${tab.offsetHeight}px`;
+    navPointer.style.transform = `translate3d(${tab.offsetLeft}px, ${tab.offsetTop}px, 0)`;
   };
 
   const makeDesktopActive = (tab: HTMLAnchorElement | null): void => {
@@ -45,16 +57,12 @@ export function initNavbar(): void {
       return;
     }
 
-    if (tab === activeDesktopTab) return;
+    if (tab === activeDesktopTab && navPointer.style.opacity === '1') return;
 
     cleanDesktopActive();
     tab.classList.add('active');
     activeDesktopTab = tab;
-
-    navPointer.style.opacity = '1';
-    navPointer.style.width = `${tab.offsetWidth}px`;
-    navPointer.style.height = `${tab.offsetHeight}px`;
-    navPointer.style.transform = `translate3d(${tab.offsetLeft}px, ${tab.offsetTop}px, 0)`;
+    updatePointerPosition(tab);
   };
 
   const makeMobileActive = (targetHref: string): void => {
@@ -63,11 +71,7 @@ export function initNavbar(): void {
 
     mobileTabs.forEach((tab) => {
       const href = tab.getAttribute('href') || tab.dataset.href;
-      if (href === targetHref) {
-        tab.classList.add('active');
-      } else {
-        tab.classList.remove('active');
-      }
+      tab.classList.toggle('active', href === targetHref);
     });
   };
 
@@ -92,15 +96,48 @@ export function initNavbar(): void {
     nav.classList.toggle('nav-visible', visible);
     nav.classList.toggle('nav-hidden', !visible);
 
-    if (!visible) makeDesktopActive(null);
+    if (!visible) {
+      makeDesktopActive(null);
+    }
   };
 
-  const handleScroll = (): void => {
+  const getActiveMapping = (): SectionMapping => {
     const scrollY = window.scrollY;
     const vpHeight = window.innerHeight;
     const docHeight = document.documentElement.scrollHeight;
 
-    if (scrollY < 180) {
+    // Check if at the bottom of the page
+    if (scrollY + vpHeight >= docHeight - 80) {
+      return sectionSequence[sectionSequence.length - 1];
+    }
+
+    // Dynamic focus line: 30% of viewport height below top
+    const focusLine = scrollY + Math.max(140, vpHeight * 0.28);
+
+    let active = sectionSequence[0];
+
+    for (const item of sectionSequence) {
+      const el = document.getElementById(item.sectionId);
+      if (!el) continue;
+
+      // Use document-relative top position
+      const top = el.getBoundingClientRect().top + scrollY;
+
+      if (focusLine >= top) {
+        active = item;
+      } else {
+        break; // Passed the current focus line, keep previous active
+      }
+    }
+
+    return active;
+  };
+
+  const handleScroll = (): void => {
+    const scrollY = window.scrollY;
+
+    // Hide desktop navbar when at top of hero
+    if (scrollY < 120) {
       setDesktopNavbarVisibility(false);
       makeMobileActive('#header');
       setTheme('magic');
@@ -110,31 +147,17 @@ export function initNavbar(): void {
     setDesktopNavbarVisibility(true);
     if (isClickScrolling) return;
 
-    if (scrollY + vpHeight >= docHeight - 80) {
-      if (nav) makeDesktopActive(nav.querySelector<HTMLAnchorElement>('a[href="#contact"]'));
-      makeMobileActive('#contact');
-      setTheme('dark');
-      return;
+    const active = getActiveMapping();
+
+    if (active.desktopHref && nav) {
+      const targetTab = nav.querySelector<HTMLAnchorElement>(`a[href="${active.desktopHref}"]`);
+      makeDesktopActive(targetTab);
+    } else {
+      makeDesktopActive(null);
     }
 
-    const focusLine = vpHeight * 0.35;
-    let activeTarget = targets[targets.length - 1];
-
-    for (const target of targets) {
-      const el = document.getElementById(target.id);
-      if (!el) continue;
-      const rect = el.getBoundingClientRect();
-      if (rect.top <= focusLine && rect.bottom > 0) {
-        activeTarget = target;
-        break;
-      }
-    }
-
-    if (nav) {
-      makeDesktopActive(nav.querySelector<HTMLAnchorElement>(`a[href="${activeTarget.navHref}"]`));
-    }
-    makeMobileActive(activeTarget.mobileHref);
-    setTheme(activeTarget.theme);
+    makeMobileActive(active.mobileHref);
+    setTheme(active.theme);
   };
 
   let scrollTicking = false;
@@ -148,26 +171,56 @@ export function initNavbar(): void {
     }
   };
 
+  // Scroll listeners
   window.addEventListener('scroll', onScrollTick, { passive: true });
 
-  setTimeout(() => {
+  // Connect with Lenis if initialized
+  const attachLenis = () => {
     const lenis = (window as any).lenis;
     if (lenis && typeof lenis.on === 'function') {
       lenis.on('scroll', onScrollTick);
     }
-  }, 150);
+  };
 
+  setTimeout(attachLenis, 150);
+
+  // Recalculate pointer position on resize or font load
+  window.addEventListener('resize', () => {
+    if (activeDesktopTab) {
+      updatePointerPosition(activeDesktopTab);
+    }
+  }, { passive: true });
+
+  // Initial check
   handleScroll();
 
-  const scrollToTarget = (targetEl: HTMLElement): void => {
+  const scrollToTarget = (targetEl: HTMLElement, onDone?: () => void): void => {
     const lenis = (window as any).lenis;
+    const targetOffset = -85; // Clean breathing room below fixed navbar
+
     if (lenis && typeof lenis.scrollTo === 'function') {
-      lenis.scrollTo(targetEl, { offset: -20, duration: 1.2 });
+      lenis.scrollTo(targetEl, {
+        offset: targetOffset,
+        duration: 1.0,
+        onComplete: onDone,
+      });
+      // Safety fallback in case onComplete isn't called
+      setTimeout(() => {
+        if (onDone) onDone();
+      }, 1100);
     } else {
-      targetEl.scrollIntoView({ behavior: 'smooth' });
+      const elementPosition = targetEl.getBoundingClientRect().top + window.scrollY;
+      window.scrollTo({
+        top: elementPosition + targetOffset,
+        behavior: 'smooth',
+      });
+      setTimeout(() => {
+        if (onDone) onDone();
+      }, 700);
     }
   };
 
+  // Desktop tab clicks
   navItems?.forEach((tab) => {
     tab.addEventListener('click', (e) => {
       const href = tab.getAttribute('href');
@@ -178,25 +231,23 @@ export function initNavbar(): void {
       if (!targetEl) return;
 
       isClickScrolling = true;
-      clearTimeout(clickTimeout);
-
       makeDesktopActive(tab);
 
-      const matched = [...targets].reverse().find((t) => `#${t.id}` === href || t.navHref === href);
+      // Match theme & mobile tab
+      const matched = sectionSequence.find((s) => s.desktopHref === href || `#${s.sectionId}` === href);
       if (matched) {
         setTheme(matched.theme);
         makeMobileActive(matched.mobileHref);
       }
 
-      scrollToTarget(targetEl);
-
-      clickTimeout = setTimeout(() => {
+      scrollToTarget(targetEl, () => {
         isClickScrolling = false;
         handleScroll();
-      }, 1300);
+      });
     });
   });
 
+  // Mobile tab clicks
   mobileTabs.forEach((tab) => {
     tab.addEventListener('click', (e) => {
       const href = tab.getAttribute('href') || tab.dataset.href;
@@ -207,22 +258,20 @@ export function initNavbar(): void {
       if (!targetEl) return;
 
       isClickScrolling = true;
-      clearTimeout(clickTimeout);
-
       makeMobileActive(href);
 
-      const matched = [...targets].reverse().find((t) => `#${t.id}` === href || t.mobileHref === href || t.navHref === href);
+      const matched = sectionSequence.find((s) => s.mobileHref === href || `#${s.sectionId}` === href);
       if (matched) {
         setTheme(matched.theme);
-        if (nav) makeDesktopActive(nav.querySelector<HTMLAnchorElement>(`a[href="${matched.navHref}"]`));
+        if (matched.desktopHref && nav) {
+          makeDesktopActive(nav.querySelector<HTMLAnchorElement>(`a[href="${matched.desktopHref}"]`));
+        }
       }
 
-      scrollToTarget(targetEl);
-
-      clickTimeout = setTimeout(() => {
+      scrollToTarget(targetEl, () => {
         isClickScrolling = false;
         handleScroll();
-      }, 1300);
+      });
     });
   });
 }
