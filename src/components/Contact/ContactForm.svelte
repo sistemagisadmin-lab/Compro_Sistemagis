@@ -88,7 +88,7 @@
             required
             bind:value={name}
             placeholder="John Doe"
-            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#4379bf] focus:ring-2 focus:ring-[#4379bf]/20 transition-all"
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#5194ea] focus:ring-2 focus:ring-[#5194ea]/20 transition-all"
           />
         </div>
 
@@ -102,7 +102,7 @@
             type="text"
             bind:value={company}
             placeholder="PT Maju Bersama / Startup"
-            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#4379bf] focus:ring-2 focus:ring-[#4379bf]/20 transition-all"
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#5194ea] focus:ring-2 focus:ring-[#5194ea]/20 transition-all"
           />
         </div>
       </div>
@@ -119,7 +119,7 @@
             required
             bind:value={email}
             placeholder="name@company.com"
-            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#4379bf] focus:ring-2 focus:ring-[#4379bf]/20 transition-all"
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#5194ea] focus:ring-2 focus:ring-[#5194ea]/20 transition-all"
           />
         </div>
 
@@ -134,7 +134,7 @@
             required
             bind:value={whatsapp}
             placeholder="081234567890"
-            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#4379bf] focus:ring-2 focus:ring-[#4379bf]/20 transition-all"
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#5194ea] focus:ring-2 focus:ring-[#5194ea]/20 transition-all"
           />
         </div>
       </div>
@@ -148,7 +148,7 @@
           <select
             id="contact-service"
             bind:value={serviceType}
-            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 text-sm focus:outline-none focus:border-[#4379bf] focus:ring-2 focus:ring-[#4379bf]/20 transition-all"
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 text-sm focus:outline-none focus:border-[#5194ea] focus:ring-2 focus:ring-[#5194ea]/20 transition-all"
           >
             {#each serviceOptions as opt}
               <option value={opt}>{opt}</option>
@@ -164,7 +164,7 @@
           <select
             id="contact-budget"
             bind:value={budgetRange}
-            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 text-sm focus:outline-none focus:border-[#4379bf] focus:ring-2 focus:ring-[#4379bf]/20 transition-all"
+            class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 text-sm focus:outline-none focus:border-[#5194ea] focus:ring-2 focus:ring-[#5194ea]/20 transition-all"
           >
             {#each budgetOptions as b}
               <option value={b}>{b}</option>
@@ -184,7 +184,7 @@
           required
           bind:value={message}
           placeholder="Ceritakan proses bisnis yang ingin dirapikan, fitur yang dibutuhkan, atau timeline yang diharapkan..."
-          class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#4379bf] focus:ring-2 focus:ring-[#4379bf]/20 transition-all resize-none"
+          class="w-full px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300/80 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#5194ea] focus:ring-2 focus:ring-[#5194ea]/20 transition-all resize-none"
         ></textarea>
       </div>
 
@@ -192,7 +192,7 @@
       <button
         type="submit"
         disabled={isSubmitting}
-        class="w-full py-3.5 px-6 rounded-xl bg-[#4379bf] hover:bg-[#3664a0] text-white font-bold text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow-md cursor-pointer disabled:opacity-50"
+        class="w-full py-3.5 px-6 rounded-xl bg-[#5194ea] hover:bg-[#3f7cd0] text-white font-bold text-sm tracking-wide transition-all duration-200 flex items-center justify-center gap-2 shadow-md shadow-[#5194ea]/20 cursor-pointer disabled:opacity-50"
       >
         {#if isSubmitting}
           <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>

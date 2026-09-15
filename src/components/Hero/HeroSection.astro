@@ -1,55 +1,67 @@
 ---
-import ShapeGrid from '../common/ShapeGrid.astro';
-import iconGradient from '../../images/icon sistemagis gradient.png';
+import Aurora from './Aurora'
+import SparkleI from '../common/SparkleI.astro'
 ---
 
 <section
-  id="header"
-  class="relative w-full min-h-screen flex flex-col justify-between pt-24 sm:pt-32 pb-12 sm:pb-16 overflow-hidden bg-white"
+  id='header'
+  class='relative w-full min-h-[95vh] sm:min-h-screen flex flex-col justify-center pt-36 sm:pt-44 md:pt-48 pb-20 sm:pb-28 overflow-hidden bg-white'
 >
-  <!-- Background Shape Grid -->
-  <ShapeGrid interactive={true} />
+  <!-- Animated Aurora WebGL Background (Reduced Opacity & Softened Violet) -->
+  <div
+    class='absolute inset-0 z-0 overflow-hidden pointer-events-none [mask-image:radial-gradient(ellipse_85%_65%_at_50%_15%,black_40%,transparent_85%)] opacity-50'
+  >
+    <Aurora
+      colorStops={['#5194EA', '#60A5FA', '#A5B4FC']}
+      blend={0.5}
+      amplitude={1.0}
+      speed={1}
+      lightMode={true}
+    />
+  </div>
 
-  <!-- Background Ambient Glows -->
-  <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#4379bf]/10 rounded-full blur-3xl pointer-events-none -z-0"></div>
+  <!-- Soft Ambient Light Glows (Sistemagis Blue Palette) -->
+  <div
+    class='absolute -top-28 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gradient-to-r from-[#5194ea]/10 via-[#60a5fa]/8 to-[#a5b4fc]/8 rounded-full blur-3xl pointer-events-none -z-0'
+  >
+  </div>
 
-  <!-- Hero Content Container (Centered Vertically) -->
-  <div class="relative z-20 mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-12 my-auto py-8 sm:py-12 flex flex-col items-center text-center">
+  <!-- Hero Content Container -->
+  <div
+    class='relative z-20 mx-auto w-full max-w-6xl px-6 sm:px-10 lg:px-12 flex flex-col items-center text-center'
+  >
     <!-- Main Title: "We Make Digital Solutions Feel Magis." -->
-    <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-black tracking-tighter text-[#0f172a] leading-[1.02] max-w-5xl mx-auto">
-      We Make
-      <span class="relative inline-block text-[#4379bf]">
-        Digital Solutions
-      </span>
-      <br class="hidden sm:block" />
-      Feel Magis<span class="text-[#4379bf]">.</span>
+    <h1
+      class='text-4xl sm:text-6xl md:text-7xl lg:text-[5.2rem] font-black tracking-tight text-[#0f172a] leading-[1.16] sm:leading-[1.12] max-w-5xl mx-auto py-2'
+    >
+      We make
+      <span class='relative inline-block text-[#5194ea]'> digital solutions </span>
+      <br class='hidden sm:block' />
+      feel mag<SparkleI />s
     </h1>
 
     <!-- Subtitle -->
-    <p class="mt-6 sm:mt-8 text-lg sm:text-xl md:text-2xl text-slate-600 max-w-3xl font-medium leading-relaxed mx-auto">
-      Sistemagis membangun produk dan solusi digital yang membantu bisnis bekerja lebih sederhana, terhubung, dan siap berkembang. Dari masalah yang rumit menjadi hasil yang beres.
+    <p
+      class='mt-6 sm:mt-8 text-base sm:text-lg md:text-xl text-slate-600 max-w-4xl font-medium leading-relaxed mx-auto'
+    >
+      Sistemagis membangun produk dan solusi digital secara sistematis untuk menyederhanakan proses,
+      mengoptimalkan bisnis, dan mewujudkan ide menjadi sesuatu yang nyata.
     </p>
 
     <!-- CTAs -->
-    <div class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
+    <div class='mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4'>
       <a
-        href="#contact"
-        class="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-white font-bold text-sm bg-[#4379bf] hover:bg-[#3664a0] shadow-md transition-all duration-200 hover:-translate-y-0.5"
+        href='#contact'
+        class='inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-xl text-white font-bold text-sm bg-[#5194ea] hover:bg-[#3f7cd0] shadow-md shadow-[#5194ea]/20 transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0'
       >
         <span>Mulai Proyek</span>
-        <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-        </svg>
       </a>
 
       <a
-        href="#products"
-        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 hover:text-[#0f172a] font-semibold text-sm border border-slate-300/80 shadow-sm transition-all duration-200 hover:-translate-y-0.5"
+        href='#products'
+        class='inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 hover:text-[#0f172a] font-semibold text-sm border border-slate-300/80 shadow-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0'
       >
         <span>Jelajahi Produk Kami</span>
-        <svg class="w-4 h-4 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 13.5L12 21m0 0l-7.5-7.5M12 21V3" />
-        </svg>
       </a>
     </div>
   </div>

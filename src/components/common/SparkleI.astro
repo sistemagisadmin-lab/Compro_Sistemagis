@@ -1,0 +1,45 @@
+---
+export interface Props {
+  stemColor?: string;
+  sparkleColor?: string;
+  class?: string;
+}
+
+const {
+  stemColor = "currentColor",
+  sparkleColor,
+  class: className = "",
+} = Astro.props;
+
+// Unique ID for linear gradient to avoid ID collisions
+const gradientId = `sparkle-grad-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<span class={`inline-block relative select-none leading-none ${className}`}>
+  <span class="sr-only">i</span>
+  <svg
+    aria-hidden="true"
+    class="inline-block w-auto overflow-visible"
+    style="height: 0.77em; vertical-align: 0em; margin-left: 0.02em; margin-right: 0.02em;"
+    viewBox="0 0 24 97"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <!-- Authentic Stem of lowercase i from Figma vector -->
+    <path
+      d="M5.56883 97V41.502H0V34.7537C1.53351 32.8428 3.41979 30.802 5.56883 29.172C7.99399 27.3326 10.7538 26.0163 13.7188 26.0001C17.1998 25.981 22 29.274 22 29.274V97H5.56883Z"
+      fill={stemColor}
+    />
+    <!-- Authentic Sparkle Star from Figma vector -->
+    <path
+      d="M9.54907 6.17489C7.61145 8.19737 4 7.67033 4 10.3219C4 12.9735 7.58267 12.2283 9.54907 14.2385C11.5155 16.2488 10.6947 20.6434 13.658 20.6434C16.6212 20.6434 15.6491 16.2636 17.6127 14.2385C19.5763 12.2134 23.3159 12.9982 23.3159 10.3219C23.3159 7.64562 19.5467 8.21155 17.6127 6.17489C15.6786 4.13823 16.5374 0.0508785 13.658 0.000449825C10.7785 -0.0499788 11.4867 4.15241 9.54907 6.17489Z"
+      fill={sparkleColor ? sparkleColor : `url(#${gradientId})`}
+    />
+    <defs>
+      <linearGradient id={gradientId} x1="24.5" y1="-7" x2="-1" y2="26" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#5194EA" />
+        <stop offset="1" stop-color="#4673AC" />
+      </linearGradient>
+    </defs>
+  </svg>
+</span>

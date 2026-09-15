@@ -150,7 +150,29 @@ Untuk website Indonesia, saya paling suka:
 
 Subheadline:
 
-> **Sistemagis membangun produk dan solusi digital yang membantu bisnis bekerja lebih sederhana, terhubung, dan siap berkembang.**
+> **Sistemagis membangun produk dan solusi digital secara sistematis untuk menyederhanakan proses, mengoptimalkan bisnis, dan mewujudkan ide menjadi sesuatu yang nyata.**
+
+---
+
+# 3.1 Visual Identity & Design System
+
+Identitas visual Sistemagis dirancang untuk mencerminkan karakter teknologi yang rapi, kredibel, modern, dan memberikan sentuhan magis:
+
+### 1. Color Palette
+
+| Token | Name | Hex Code | Karakter & Penggunaan |
+|---|---|---|---|
+| `--color-brand-primary` | **Primary Blue** | `#5194EA` | **Main brand color** — Primary buttons, highlights, links, active state badges |
+| `--color-brand-deep` | **Deep Navy** | `#0F172A` | **Trust & Credibility** — Primary text, headings, dark navigation, footer |
+| `--color-brand-soft` | **Light Blue** | `#E6F0FF` | **Clean Architecture** — Soft backgrounds, subtle container accents, hover states |
+| `--color-brand-violet` | **Violet** | `#8B5CF6` | **Innovation & Magis** — Special accents, magis elements, interactive spark highlights |
+
+### 2. Typography
+
+| Role | Font Family | Fallback | Penggunaan |
+|---|---|---|---|
+| **Heading & Display** | **Plus Jakarta Sans** | `sans-serif` | Judul utama (H1, H2, H3), hero display titles, angka statistik, dan brand callout |
+| **Body & UI** | **Inter** | `system-ui, sans-serif` | Teks paragraf, penjelasan fitur, label tombol, menu navigasi, dan elemen form |
 
 ---
 
@@ -283,7 +305,7 @@ Contoh:
 
 ### Supporting text
 
-> Kami membangun produk dan solusi digital yang membantu bisnis bekerja lebih sederhana, lebih terhubung, dan lebih siap berkembang.
+> Sistemagis membangun produk dan solusi digital secara sistematis untuk menyederhanakan proses, mengoptimalkan bisnis, dan mewujudkan ide menjadi sesuatu yang nyata.
 
 CTA:
 
