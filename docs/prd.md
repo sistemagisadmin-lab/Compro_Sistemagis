@@ -278,7 +278,7 @@ Saya rekomendasikan:
 
 dan CTA:
 
-**Let's Talk**
+**Konsultasi Gratis**
 
 ---
 
@@ -1040,7 +1040,7 @@ Kalau saya rangkum menjadi satu flow, saya akan membuatnya seperti ini:
 NAVBAR
 Sistemagis
 Products · Solutions · Works · About
-                         [Let's Talk]
+                   [Konsultasi Gratis]
 
                     ↓
 

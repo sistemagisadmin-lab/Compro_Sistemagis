@@ -17,22 +17,23 @@ export function initNavbar(): void {
 
   let activeDesktopTab: HTMLAnchorElement | null = null;
   let activeMobileHref = '';
-  let isNavVisible = false;
   let currentTheme: ThemeName = 'magic';
   let isClickScrolling = false;
 
-  // Complete mapping of every section in DOM order (from top to bottom)
-  // Ensures zero dead zones or incorrect backward jumps
+  const pathname = window.location.pathname.replace(/\/$/, '') || '/';
+  const isDedicatedPage = pathname !== '/';
+
+  // Section mapping for Homepage (when pathname === '/')
   const sectionSequence: SectionMapping[] = [
-    { sectionId: 'header',       desktopHref: null,         mobileHref: '#header',    theme: 'magic' },
-    { sectionId: 'what-we-do',   desktopHref: '#products',  mobileHref: '#header',    theme: 'magic' },
-    { sectionId: 'products',     desktopHref: '#products',  mobileHref: '#products',  theme: 'magic' },
-    { sectionId: 'solutions',    desktopHref: '#solutions', mobileHref: '#solutions', theme: 'magic' },
-    { sectionId: 'why-magis',    desktopHref: '#solutions', mobileHref: '#solutions', theme: 'magic' },
-    { sectionId: 'works',        desktopHref: '#works',     mobileHref: '#works',     theme: 'magic' },
-    { sectionId: 'how-we-work',  desktopHref: '#works',     mobileHref: '#works',     theme: 'magic' },
-    { sectionId: 'about',        desktopHref: '#about',     mobileHref: '#about',     theme: 'magic' },
-    { sectionId: 'contact',      desktopHref: '#about',     mobileHref: '#about',     theme: 'dark'  },
+    { sectionId: 'header',       desktopHref: '/',            mobileHref: '/',              theme: 'magic' },
+    { sectionId: 'what-we-do',   desktopHref: '/#products',   mobileHref: '/#products',     theme: 'magic' },
+    { sectionId: 'products',     desktopHref: '/#products',   mobileHref: '/#products',     theme: 'magic' },
+    { sectionId: 'solutions',    desktopHref: '/layanan',     mobileHref: '/layanan',       theme: 'magic' },
+    { sectionId: 'why-magis',    desktopHref: '/layanan',     mobileHref: '/layanan',       theme: 'magic' },
+    { sectionId: 'works',        desktopHref: '/#works',      mobileHref: '/#works',        theme: 'magic' },
+    { sectionId: 'how-we-work',  desktopHref: '/#works',      mobileHref: '/#works',        theme: 'magic' },
+    { sectionId: 'about',        desktopHref: '/tentang-kami',mobileHref: '/tentang-kami',  theme: 'magic' },
+    { sectionId: 'contact',      desktopHref: null,           mobileHref: '/tentang-kami',  theme: 'dark'  },
   ];
 
   const cleanDesktopActive = (): void => {
@@ -70,7 +71,7 @@ export function initNavbar(): void {
     activeMobileHref = targetHref;
 
     mobileTabs.forEach((tab) => {
-      const href = tab.getAttribute('href') || tab.dataset.href;
+      const href = tab.getAttribute('href') || tab.dataset.href || '';
       tab.classList.toggle('active', href === targetHref);
     });
   };
@@ -80,25 +81,10 @@ export function initNavbar(): void {
     currentTheme = theme;
 
     ['magic', 'dark'].forEach((t) => {
-      nav?.classList.remove(`theme-${t}`);
       mobileNav?.classList.remove(`theme-${t}`);
     });
 
-    nav?.classList.add(`theme-${theme}`);
     mobileNav?.classList.add(`theme-${theme}`);
-  };
-
-  const setDesktopNavbarVisibility = (visible: boolean): void => {
-    if (!nav) return;
-    if (isNavVisible === visible) return;
-    isNavVisible = visible;
-
-    nav.classList.toggle('nav-visible', visible);
-    nav.classList.toggle('nav-hidden', !visible);
-
-    if (!visible) {
-      makeDesktopActive(null);
-    }
   };
 
   const getActiveMapping = (): SectionMapping => {
@@ -120,13 +106,12 @@ export function initNavbar(): void {
       const el = document.getElementById(item.sectionId);
       if (!el) continue;
 
-      // Use document-relative top position
       const top = el.getBoundingClientRect().top + scrollY;
 
       if (focusLine >= top) {
         active = item;
       } else {
-        break; // Passed the current focus line, keep previous active
+        break;
       }
     }
 
@@ -136,21 +121,24 @@ export function initNavbar(): void {
   const handleScroll = (): void => {
     const scrollY = window.scrollY;
 
-    // Hide desktop navbar when at top of hero
-    if (scrollY < 120) {
-      setDesktopNavbarVisibility(false);
-      makeMobileActive('#header');
-      setTheme('magic');
+    // Subtle elevation styling when scrolled past hero threshold
+    if (scrollY > 20) {
+      nav?.classList.add('nav-scrolled');
+    } else {
+      nav?.classList.remove('nav-scrolled');
+    }
+
+    if (isDedicatedPage) {
+      // On dedicated pages (/layanan, /tentang-kami), maintain current page tab active
       return;
     }
 
-    setDesktopNavbarVisibility(true);
     if (isClickScrolling) return;
 
     const active = getActiveMapping();
 
     if (active.desktopHref && nav) {
-      const targetTab = nav.querySelector<HTMLAnchorElement>(`a[href="${active.desktopHref}"]`);
+      const targetTab = nav.querySelector<HTMLAnchorElement>(`.nav-links-container .nav-item[data-href="${active.desktopHref}"], .nav-links-container .nav-item[href="${active.desktopHref}"]`);
       makeDesktopActive(targetTab);
     } else {
       makeDesktopActive(null);
@@ -191,12 +179,28 @@ export function initNavbar(): void {
     }
   }, { passive: true });
 
-  // Initial check
-  handleScroll();
+  // Recalculate pointer position when navbar width animation finishes
+  nav?.addEventListener('transitionend', (e) => {
+    if (e.propertyName === 'max-width' && activeDesktopTab) {
+      updatePointerPosition(activeDesktopTab);
+    }
+  });
+
+  // Initial setup on page load
+  if (isDedicatedPage) {
+    const matchingTab = nav?.querySelector<HTMLAnchorElement>(`.nav-links-container .nav-item[data-href="${pathname}"], .nav-links-container .nav-item[href="${pathname}"]`);
+    if (matchingTab) {
+      setTimeout(() => makeDesktopActive(matchingTab), 60);
+    }
+    makeMobileActive(pathname);
+    handleScroll();
+  } else {
+    handleScroll();
+  }
 
   const scrollToTarget = (targetEl: HTMLElement, onDone?: () => void): void => {
     const lenis = (window as any).lenis;
-    const targetOffset = -85; // Clean breathing room below fixed navbar
+    const targetOffset = -70; // Clean breathing room below slimmer fixed navbar
 
     if (lenis && typeof lenis.scrollTo === 'function') {
       lenis.scrollTo(targetEl, {
@@ -204,7 +208,6 @@ export function initNavbar(): void {
         duration: 1.0,
         onComplete: onDone,
       });
-      // Safety fallback in case onComplete isn't called
       setTimeout(() => {
         if (onDone) onDone();
       }, 1100);
@@ -220,58 +223,93 @@ export function initNavbar(): void {
     }
   };
 
+  // Helper to handle anchor clicks
+  const handleAnchorClick = (e: MouseEvent, href: string | null) => {
+    if (!href) return;
+
+    if (href === '/') {
+      if (pathname === '/') {
+        const headerEl = document.getElementById('header');
+        if (headerEl) {
+          e.preventDefault();
+          isClickScrolling = true;
+          const berandaTab = nav?.querySelector<HTMLAnchorElement>('.nav-links-container .nav-item[data-href="/"], .nav-links-container .nav-item[href="/"]');
+          if (berandaTab) {
+            makeDesktopActive(berandaTab);
+          }
+          makeMobileActive('/');
+          scrollToTarget(headerEl, () => {
+            isClickScrolling = false;
+            handleScroll();
+          });
+        }
+      }
+      return;
+    }
+
+    const isSamePageAnchor = href.startsWith('#') || (href.startsWith('/#') && pathname === '/');
+    if (!isSamePageAnchor) return; // Allow natural page transition to other pages
+
+    const targetId = href.replace(/^\/?#/, '');
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+
+    e.preventDefault();
+    isClickScrolling = true;
+
+    const matchedTab = nav?.querySelector<HTMLAnchorElement>(`.nav-links-container .nav-item[data-href="${href}"], .nav-links-container .nav-item[href="${href}"]`);
+    if (matchedTab) {
+      makeDesktopActive(matchedTab);
+    }
+
+    scrollToTarget(targetEl, () => {
+      isClickScrolling = false;
+      handleScroll();
+    });
+  };
+
   // Desktop tab clicks
   navItems?.forEach((tab) => {
     tab.addEventListener('click', (e) => {
       const href = tab.getAttribute('href');
-      if (!href?.startsWith('#')) return;
-      e.preventDefault();
-
-      const targetEl = document.querySelector<HTMLElement>(href);
-      if (!targetEl) return;
-
-      isClickScrolling = true;
-      makeDesktopActive(tab);
-
-      // Match theme & mobile tab
-      const matched = sectionSequence.find((s) => s.desktopHref === href || `#${s.sectionId}` === href);
-      if (matched) {
-        setTheme(matched.theme);
-        makeMobileActive(matched.mobileHref);
-      }
-
-      scrollToTarget(targetEl, () => {
-        isClickScrolling = false;
-        handleScroll();
-      });
+      handleAnchorClick(e, href);
     });
+  });
+
+  // Logo click
+  const logoLink = nav?.querySelector<HTMLAnchorElement>('.brand-logo-wrap');
+  logoLink?.addEventListener('click', (e) => {
+    if (pathname === '/') {
+      const headerEl = document.getElementById('header');
+      if (headerEl) {
+        e.preventDefault();
+        isClickScrolling = true;
+        makeDesktopActive(null);
+        makeMobileActive('/');
+        scrollToTarget(headerEl, () => {
+          isClickScrolling = false;
+          handleScroll();
+        });
+      }
+    }
+  });
+
+  // CTA button click
+  const ctaLink = nav?.querySelector<HTMLAnchorElement>('a[href="/#contact"], a[href="#contact"]');
+  ctaLink?.addEventListener('click', (e) => {
+    const href = ctaLink.getAttribute('href');
+    handleAnchorClick(e, href);
   });
 
   // Mobile tab clicks
   mobileTabs.forEach((tab) => {
     tab.addEventListener('click', (e) => {
       const href = tab.getAttribute('href') || tab.dataset.href;
-      if (!href?.startsWith('#')) return;
-      e.preventDefault();
-
-      const targetEl = document.querySelector<HTMLElement>(href);
-      if (!targetEl) return;
-
-      isClickScrolling = true;
-      makeMobileActive(href);
-
-      const matched = sectionSequence.find((s) => s.mobileHref === href || `#${s.sectionId}` === href);
-      if (matched) {
-        setTheme(matched.theme);
-        if (matched.desktopHref && nav) {
-          makeDesktopActive(nav.querySelector<HTMLAnchorElement>(`a[href="${matched.desktopHref}"]`));
-        }
+      if (!href) return;
+      handleAnchorClick(e, href);
+      if (href) {
+        makeMobileActive(href);
       }
-
-      scrollToTarget(targetEl, () => {
-        isClickScrolling = false;
-        handleScroll();
-      });
     });
   });
 }

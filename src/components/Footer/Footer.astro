@@ -1,5 +1,5 @@
 ---
-import logoDarkMode from '../../images/logo sistemagis with text.png';
+import SistemagisLogo from '../Navbar/SistemagisLogo.astro';
 
 const currentYear = new Date().getFullYear();
 ---
@@ -9,8 +9,8 @@ const currentYear = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-slate-800/80">
       <!-- Brand & Tagline -->
       <div class="lg:col-span-4">
-        <a href="#header" class="inline-flex items-center mb-4 group" aria-label="Sistemagis Home">
-          <img src={logoDarkMode.src} alt="Sistemagis" class="h-8 w-auto object-contain group-hover:opacity-90 transition-opacity" />
+        <a href="/" class="inline-flex items-center mb-4 group cursor-pointer" aria-label="Sistemagis Home">
+          <SistemagisLogo theme="white" idPrefix="footer-logo" class="h-8 w-auto block" />
         </a>
 
         <p class="text-white font-semibold text-sm mb-2">
@@ -43,31 +43,35 @@ const currentYear = new Date().getFullYear();
               <span class="text-[10px] px-1.5 py-0.2 rounded bg-[#5194ea]/20 text-[#8bb4ea]">Wedding</span>
             </a>
           </li>
+          <li>
+            <a href="/#products" class="hover:text-[#5194ea] transition-colors">Lihat Semua Produk</a>
+          </li>
         </ul>
       </div>
 
       <!-- Column 2: Solutions -->
       <div class="lg:col-span-3">
-        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Solutions</h4>
+        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Layanan & Solusi</h4>
         <ul class="space-y-2.5 text-xs sm:text-sm">
-          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">Company Website</a></li>
-          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">Custom Business System</a></li>
-          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">SaaS Development</a></li>
-          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">Business Automation</a></li>
-          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">AI & Custom RAG</a></li>
-          <li><a href="#solutions" class="hover:text-[#5194ea] transition-colors">System & API Integration</a></li>
+          <li><a href="/layanan#company-website" class="hover:text-[#5194ea] transition-colors">Company Website</a></li>
+          <li><a href="/layanan#custom-system" class="hover:text-[#5194ea] transition-colors">Custom Business System</a></li>
+          <li><a href="/layanan#saas-development" class="hover:text-[#5194ea] transition-colors">SaaS Development</a></li>
+          <li><a href="/layanan#business-automation" class="hover:text-[#5194ea] transition-colors">Business Automation</a></li>
+          <li><a href="/layanan#ai-solutions" class="hover:text-[#5194ea] transition-colors">AI & Custom RAG</a></li>
+          <li><a href="/layanan#api-integration" class="hover:text-[#5194ea] transition-colors">System & API Integration</a></li>
         </ul>
       </div>
 
       <!-- Column 3: Company -->
       <div class="lg:col-span-2">
-        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Company</h4>
+        <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-4">Studio</h4>
         <ul class="space-y-2.5 text-xs sm:text-sm">
-          <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
-          <li><a href="#works" class="hover:text-white transition-colors">Things We've Made</a></li>
-          <li><a href="#why-magis" class="hover:text-white transition-colors">Why Magis?</a></li>
-          <li><a href="#how-we-work" class="hover:text-white transition-colors">How We Work</a></li>
-          <li><a href="#contact" class="hover:text-white transition-colors">Contact Studio</a></li>
+          <li><a href="/tentang-kami" class="hover:text-white transition-colors">Tentang Kami</a></li>
+          <li><a href="/layanan" class="hover:text-white transition-colors">Semua Layanan</a></li>
+          <li><a href="/#works" class="hover:text-white transition-colors">Things We've Made</a></li>
+          <li><a href="/#why-magis" class="hover:text-white transition-colors">Why Magis?</a></li>
+          <li><a href="/#how-we-work" class="hover:text-white transition-colors">How We Work</a></li>
+          <li><a href="/#contact" class="hover:text-white transition-colors">Hubungi Studio</a></li>
         </ul>
       </div>
     </div>

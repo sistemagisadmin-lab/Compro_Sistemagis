@@ -1,0 +1,338 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar/Navbar.astro';
+import Footer from '../components/Footer/Footer.astro';
+import SignatureCTA from '../components/CTA/SignatureCTA.astro';
+
+const services = [
+  {
+    id: 'company-website',
+    number: '01',
+    title: 'Company Profile & Web Platform',
+    badge: 'Digital Presence',
+    tagline: 'Membangun impresi pertama yang kredibel, modern, dan menghasilkan konversi bisnis.',
+    description:
+      'Bukan sekadar website brosur statis. Kami merancang web platform dengan performa ultra-cepat (PageSpeed 95+), tipografi modern, animasi mikro yang anggun, dan optimasi SEO terstruktur agar bisnis Anda mudah ditemukan calon klien strategis.',
+    idealFor: 'Perusahaan skala menengah-besar, profesional, agensi, dan brand yang ingin tampil berkelas di level global.',
+    deliverables: [
+      'Desain UI/UX eksklusif di Figma',
+      'Pengembangan berbasis Astro / Next.js berkecepatan tinggi',
+      'Integrasi CMS (Content Management System) mudah pakai',
+      'Optimasi SEO on-page lengkap & schema markup',
+      'Konfigurasi domain, SSL, dan CDN global',
+    ],
+    tech: ['Astro', 'Next.js', 'Tailwind CSS', 'TypeScript', 'Cloudflare'],
+  },
+  {
+    id: 'custom-system',
+    number: '02',
+    title: 'Custom Business Management System',
+    badge: 'Operations & ERP',
+    tagline: 'Sistem operasional kustom yang 100% mengikuti cara kerja unik bisnis Anda.',
+    description:
+      'Software pasaran seringkali terlalu rumit atau justru membatasi alur bisnis Anda. Kami membangun sistem manajemen internal kustom (Mini-ERP, CRM, Inventory, Point of Sale, Approval System) yang dirancang khusus menyelesaikan bottleneck operasional Anda.',
+    idealFor: 'Bisnis berkembang dengan alur kerja spesifik, multi-cabang, inventaris rumit, atau tim lapangan yang membutuhkan koordinasi realtime.',
+    deliverables: [
+      'Role-based access control (RBAC) & audit log',
+      'Database relasional teroptimasi dengan backup otomatis',
+      'Dashboard analitik & pelaporan otomatis (Excel/PDF)',
+      'Akses responsif untuk desktop dan tablet/mobile',
+      'Panduan manual penggunaan & pelatihan tim operasional',
+    ],
+    tech: ['Laravel', 'NestJS', 'PostgreSQL', 'React', 'Redis'],
+  },
+  {
+    id: 'saas-development',
+    number: '03',
+    title: 'SaaS Architecture & Development',
+    badge: 'Digital Product',
+    tagline: 'Mewujudkan ide produk software menjadi platform langganan yang siap dimonetisasi.',
+    description:
+      'Dari validasi MVP hingga arsitektur enterprise skala besar. Kami membantu founder dan bisnis membangun produk Software-as-a-Service dengan isolasi multi-tenant yang aman, integrasi billing otomatis, dan skalabilitas cloud yang siap melayani ribuan pengguna.',
+    idealFor: 'Startup founder, bisnis B2B, dan perusahaan yang ingin membuka revenue stream baru berbasis langganan software.',
+    deliverables: [
+      'Arsitektur Multi-Tenancy aman dan terisolasi',
+      'Sistem langganan & integrasi payment gateway (Midtrans, Stripe, Xendit)',
+      'Super-admin portal untuk pemantauan metrik MRR & churn',
+      'Otomasi email onboarding, reset password, & invoice',
+      'Infrastruktur container Docker & auto-scaling',
+    ],
+    tech: ['Next.js', 'Node.js', 'PostgreSQL', 'Docker', 'Stripe / Midtrans'],
+  },
+  {
+    id: 'business-automation',
+    number: '04',
+    title: 'Business Workflow Automation',
+    badge: 'Efficiency & Bots',
+    tagline: 'Hapus pekerjaan repetitif, hemat ratusan jam kerja tim Anda setiap bulannya.',
+    description:
+      'Banyak waktu terbuang hanya untuk menyalin data antar spreadsheet, mengirim invoice satu per satu, atau mencocokkan mutasi rekening. Kami membangun pipeline otomasi cerdas dan bot interaktif yang bekerja 24/7 tanpa celah human error.',
+    idealFor: 'Tim finance, operasional, dan customer support yang kelelahan menangani proses administratif manual berulang.',
+    deliverables: [
+      'Bot WhatsApp Bisnis & Telegram otomatis untuk notifikasi & order',
+      'Sinkronisasi otomatis antara POS/CRM dengan Google Sheets/Database',
+      'Auto-invoicing dan pengingat pembayaran piutang terjadwal',
+      'Webhook event triggers & pemantauan error otomatis',
+      'Dashboard log transaksi & status antrian pekerjaan (queue)',
+    ],
+    tech: ['Python', 'Node.js', 'Redis Queue', 'WhatsApp Cloud API', 'Webhooks'],
+  },
+  {
+    id: 'ai-solutions',
+    number: '05',
+    title: 'AI & Custom RAG Knowledge Systems',
+    badge: 'Artificial Intelligence',
+    tagline: 'Menghadirkan kecerdasan buatan yang memahami dokumen dan data privat bisnis Anda.',
+    description:
+      'Kami mengintegrasikan Large Language Model (LLM) dengan teknik Retrieval-Augmented Generation (RAG). AI dilatih menggunakan dokumen SOP internal, katalog produk, atau database perusahaan Anda sehingga mampu menjawab pertanyaan secara akurat tanpa halusinasi.',
+    idealFor: 'Customer support otomatis 24/7, asisten cerdas knowledge-base internal perusahaan, dan analisa dokumen kontrak instan.',
+    deliverables: [
+      'Pipeline ekstraksi dokumen (PDF, Word, Spreadsheet, Database)',
+      'Vector database storage & semantic search embedding',
+      'Chatbot widget cerdas untuk web atau WhatsApp',
+      'Security guardrails pencegah kebocoran data sensitif',
+      'Analytics dashboard pertanyaan user & kepuasan jawaban AI',
+    ],
+    tech: ['OpenAI / Claude API', 'LangChain', 'Vector DB (pgvector / Chroma)', 'FastAPI', 'Python'],
+  },
+  {
+    id: 'api-integration',
+    number: '06',
+    title: 'System Modernization & API Integration',
+    badge: 'Architecture & Connectors',
+    tagline: 'Menghubungkan ekosistem aplikasi yang terpisah menjadi satu alur data terpadu.',
+    description:
+      'Apakah bisnis Anda menggunakan berbagai aplikasi terpisah (ERP lama, payment gateway, kurir logistik, marketplace)? Kami membangun API layer yang aman dan andal untuk menyatukan seluruh data Anda dalam satu kesatuan sistem.',
+    idealFor: 'Perusahaan dengan sistem warisan (legacy) atau yang memerlukan integrasi dengan partner perbankan, logistik, dan e-commerce.',
+    deliverables: [
+      'RESTful & GraphQL API yang terdokumentasi rapi (Swagger/Postman)',
+      'Autentikasi aman berbasis JWT & API Key Management',
+      'High-throughput queue system untuk penanganan beban puncak',
+      'Rate-limiting, throttling, dan enkripsi data end-to-end',
+      'Dokumentasi teknis lengkap untuk tim developer internal Anda',
+    ],
+    tech: ['NestJS', 'Go', 'PostgreSQL', 'Redis', 'Docker'],
+  },
+];
+
+const workflowSteps = [
+  {
+    step: '01',
+    name: 'Discovery & Consultation',
+    desc: 'Kami mendengarkan masalah bisnis Anda, menganalisis alur kerja yang ada, dan merumuskan spesifikasi teknis (PRD) yang jelas tanpa asumsi.',
+  },
+  {
+    step: '02',
+    name: 'Architecture & UI Prototype',
+    desc: 'Menyusun rancangan database, skema keamanan, serta prototipe desain interaktif di Figma sebelum baris kode pertama ditulis.',
+  },
+  {
+    step: '03',
+    name: 'Sprint-Based Development',
+    desc: 'Pengembangan iteratif dengan update berkala setiap minggu. Anda mendapatkan link live preview (staging) untuk melihat progres nyata.',
+  },
+  {
+    step: '04',
+    name: 'Quality Assurance & Security',
+    desc: 'Pengujian fungsional ketat, simulasi beban, penanganan edge-case, dan audit keamanan data sebelum peluncuran.',
+  },
+  {
+    step: '05',
+    name: 'Deployment & Full Handover',
+    desc: 'Sistem diluncurkan live ke cloud production. Kami menyerahkan seluruh source code, hak milik, dan memberikan pelatihan penggunaan.',
+  },
+];
+
+const faqs = [
+  {
+    q: 'Berapa lama estimasi pengerjaan sebuah sistem kustom?',
+    a: 'Tergantung pada kompleksitas sistem. Website representatif biasanya memakan waktu 2–4 minggu, sedangkan custom business system atau MVP SaaS rata-rata membutuhkan 6–12 minggu. Jadwal rilis pasti disepakati di awal pada dokumen kesepakatan kerja.',
+  },
+  {
+    q: 'Siapa yang memiliki hak cipta source code setelah proyek selesai?',
+    a: '100% hak milik source code, database, dan aset digital adalah milik Anda sepenuhnya. Kami tidak memberlakukan vendor lock-in atau biaya lisensi bulanan tersembunyi untuk kode yang kami bangun.',
+  },
+  {
+    q: 'Bagaimana jika bisnis kami belum memiliki spesifikasi teknis yang matang?',
+    a: 'Tidak masalah. Tim kami terbiasa memandu proses dari nol. Kami akan melakukan sesi wawancara mendalam untuk menerjemahkan kebutuhan bisnis Anda menjadi dokumen arsitektur teknis yang terstruktur.',
+  },
+  {
+    q: 'Apakah ada masa garansi dan dukungan setelah sistem dirilis?',
+    a: 'Ya, setiap proyek yang kami deliver dilengkapi dengan garansi perbaikan bug gratis selama 30–90 hari pasca-peluncuran, serta opsi perpanjangan maintenance & support berkala.',
+  },
+];
+---
+
+<Layout
+  title="Layanan & Solusi Teknologi — Sistemagis | Solusi Digital Tuntas & Beres"
+  description="Katalog lengkap layanan rekayasa teknologi Sistemagis: Company Profile berkecepatan tinggi, Custom Business System (ERP/CRM), SaaS Architecture, Automations, dan AI & Custom RAG."
+>
+  <Navbar />
+
+  <main class="relative min-h-screen bg-slate-50 text-slate-900 overflow-hidden pt-28 sm:pt-36">
+    <!-- Ambient Background Lighting -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1100px] h-[500px] bg-gradient-to-b from-[#5194ea]/15 via-sky-200/20 to-transparent blur-3xl pointer-events-none -z-10"></div>
+    <div class="absolute top-[600px] left-0 w-80 h-80 bg-blue-400/10 blur-3xl pointer-events-none -z-10"></div>
+
+    <!-- Section 1: Hero Header -->
+    <section class="px-6 sm:px-10 lg:px-12 max-w-6xl mx-auto text-center pb-16 sm:pb-24">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#5194ea]/10 border border-[#5194ea]/25 text-[#2b6fc2] text-xs font-bold uppercase tracking-wider mb-6">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#5194ea]"></span>
+        Layanan Rekayasa Teknologi
+      </div>
+
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 max-w-4xl mx-auto leading-[1.15]">
+        Dari Masalah yang Rumit Menjadi <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#2b6fc2] via-[#5194ea] to-indigo-600">Solusi Digital yang Beres.</span>
+      </h1>
+
+      <p class="mt-6 text-base sm:text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        Kami merancang, merekayasa, dan memelihara ekosistem software kustom yang terbukti menyederhanakan operasional bisnis, meningkatkan efisiensi, dan siap bertumbuh bersama skala usaha Anda.
+      </p>
+
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a
+          href="#contact"
+          class="px-6 py-3 rounded-xl bg-[#5194ea] hover:bg-[#3f7cd0] text-white font-bold text-sm shadow-md shadow-[#5194ea]/25 transition-all hover:scale-105 inline-flex items-center gap-2"
+        >
+          <span>Konsultasikan Kebutuhan Anda</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+        </a>
+        <a
+          href="#katalog-layanan"
+          class="px-6 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-semibold text-sm border border-slate-200 shadow-sm transition-all"
+        >
+          Jelajahi 6 Pilar Solusi ↓
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 2: Katalog 6 Solusi Utama -->
+    <section id="katalog-layanan" class="px-6 sm:px-10 lg:px-12 max-w-6xl mx-auto py-12 sm:py-20 border-t border-slate-200/80">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-[#5194ea] mb-3">Capabilities & Services</h2>
+        <p class="text-2xl sm:text-4xl font-extrabold text-slate-900">
+          Solusi Terarah untuk Setiap Kebutuhan Skala Bisnis
+        </p>
+      </div>
+
+      <div class="space-y-12">
+        {services.map((svc) => (
+          <div
+            id={svc.id}
+            class="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+          >
+            <div class="flex flex-col lg:flex-row lg:items-start justify-between gap-8">
+              <div class="max-w-2xl">
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-bold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">{svc.number}</span>
+                  <span class="text-xs font-bold px-3 py-1 rounded-full bg-[#5194ea]/10 text-[#2b6fc2]">{svc.badge}</span>
+                </div>
+
+                <h3 class="text-2xl sm:text-3xl font-black text-slate-900 mb-2">
+                  {svc.title}
+                </h3>
+                <p class="text-sm sm:text-base font-semibold text-[#2b6fc2] mb-4">
+                  {svc.tagline}
+                </p>
+                <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6">
+                  {svc.description}
+                </p>
+
+                <!-- Cocok untuk -->
+                <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 text-xs text-slate-700 mb-6">
+                  <span class="font-bold text-slate-900">Cocok Untuk:</span> {svc.idealFor}
+                </div>
+
+                <!-- Deliverables List -->
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Deliverables & Output:</h4>
+                  <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-700">
+                    {svc.deliverables.map((item) => (
+                      <li class="flex items-center gap-2">
+                        <svg class="w-3.5 h-3.5 text-[#5194ea] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" /></svg>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Tech stack badges & action CTA -->
+              <div class="lg:w-64 shrink-0 flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-slate-100 pt-6 lg:pt-0 lg:pl-8">
+                <div>
+                  <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Tech Stack:</h4>
+                  <div class="flex flex-wrap gap-1.5 mb-8">
+                    {svc.tech.map((t) => (
+                      <span class="text-[11px] font-medium px-2.5 py-1 rounded-md bg-slate-100 text-slate-700 border border-slate-200/60">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                <a
+                  href="/#contact"
+                  class="w-full py-2.5 px-4 rounded-xl bg-slate-900 hover:bg-[#2b6fc2] text-white text-xs font-bold text-center transition-colors flex items-center justify-center gap-2"
+                >
+                  <span>Minta Penawaran</span>
+                  <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" /></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 3: Metodologi Kerja 5 Langkah -->
+    <section class="px-6 sm:px-10 lg:px-12 max-w-6xl mx-auto py-12 sm:py-20 border-t border-slate-200/80">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-[#5194ea] mb-3">Standard Delivery Lifecycle</h2>
+        <p class="text-2xl sm:text-4xl font-extrabold text-slate-900">
+          Proses Transparan dari Awal Hingga Sistem Beres
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-4">
+        {workflowSteps.map((step) => (
+          <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <span class="text-2xl font-black text-[#5194ea] mb-3 block">{step.step}</span>
+              <h3 class="text-sm font-bold text-slate-900 mb-2">{step.name}</h3>
+              <p class="text-xs text-slate-600 leading-relaxed">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 4: FAQ Layanan -->
+    <section class="px-6 sm:px-10 lg:px-12 max-w-4xl mx-auto py-12 sm:py-20 border-t border-slate-200/80">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <h2 class="text-xs font-bold uppercase tracking-widest text-[#5194ea] mb-3">Frequently Asked Questions</h2>
+        <p class="text-2xl sm:text-3xl font-extrabold text-slate-900">
+          Hal-hal yang Sering Ditanyakan
+        </p>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <div class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm">
+            <h3 class="text-base font-bold text-slate-900 mb-2 flex items-start gap-2">
+              <span class="text-[#5194ea] font-extrabold">Q:</span>
+              <span>{faq.q}</span>
+            </h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed pl-6">
+              {faq.a}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 5: Signature CTA -->
+    <SignatureCTA />
+  </main>
+
+  <Footer />
+</Layout>

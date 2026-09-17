@@ -1,24 +1,78 @@
-/* Desktop Floating Navbar Container (Top) */
+/* Desktop & Mobile Unified Floating Navbar (Top) */
 #nav {
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.35s ease,
-              background-color 0.5s ease,
-              box-shadow 0.5s ease;
-  will-change: transform, opacity, background-color, box-shadow;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 8px 20px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border: none;
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05),
+              0 2px 6px -1px rgba(15, 23, 42, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: max-width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              padding 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s ease,
+              backdrop-filter 0.4s ease,
+              box-shadow 0.4s ease;
+  will-change: max-width, padding, background-color, box-shadow;
 }
 
-#nav.nav-hidden {
-  opacity: 0;
-  transform: translateY(-130%);
-  pointer-events: none;
+@media (min-width: 640px) {
+  #nav {
+    padding: 9px 28px;
+  }
 }
 
-#nav.nav-visible {
-  opacity: 1;
-  transform: translateY(0%);
-  pointer-events: auto;
+/* Scrolled state: Narrows down, becomes slightly transparent with frosted glass effect */
+#nav.nav-scrolled {
+  max-width: 940px;
+  padding: 6px 16px;
+  background-color: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: none;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.07),
+              0 2px 6px -1px rgba(15, 23, 42, 0.03);
+}
+
+@media (min-width: 640px) {
+  #nav.nav-scrolled {
+    padding: 7px 22px;
+  }
+}
+
+/* Brand Logo Link */
+.brand-logo-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s ease;
+}
+
+.brand-logo-wrap:hover {
+  opacity: 0.95;
+}
+
+/* Middle Nav Links Container & Items */
+.nav-links-container {
+  position: relative;
+}
+
+#nav .nav-item {
+  color: #475569;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+#nav .nav-item:hover {
+  color: #0f172a;
+}
+
+#nav .nav-item.active {
+  color: #ffffff !important;
+  font-weight: 600;
 }
 
 /* Desktop Gliding Pointer Pill */
@@ -28,14 +82,15 @@
   left: 0;
   z-index: 0;
   border-radius: 9999px;
+  background-color: #5194ea;
+  border: 1px solid #5194ea;
+  box-shadow: 0 2px 10px rgba(81, 148, 234, 0.35);
   opacity: 0;
   pointer-events: none;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-              opacity 0.25s ease,
-              background-color 0.4s ease,
-              box-shadow 0.4s ease;
+              opacity 0.25s ease;
   will-change: transform, width, height, opacity;
 }
 
@@ -62,96 +117,29 @@
   transform: scale(1);
 }
 
-/* Themes for Navbar & Mobile Dock */
-#nav.theme-magic,
-#mobile-nav.theme-magic {
+/* Mobile Dock Themes */
+#mobile-nav.theme-magic,
+#mobile-nav.theme-dark {
   background-color: #0f172a;
   border: 1px solid rgba(81, 148, 234, 0.3);
   box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.5);
 }
-#nav.theme-magic .nav-pointer {
-  background-color: #5194ea;
-  border: 1px solid #5194ea;
-  box-shadow: 0 2px 10px rgba(81, 148, 234, 0.4);
-}
-#nav.theme-magic .nav-item,
-#mobile-nav.theme-magic .mobile-tab {
-  color: #94a3b8;
-}
-#nav.theme-magic .nav-item:hover,
-#nav.theme-magic .nav-item.active,
-#mobile-nav.theme-magic .mobile-tab.active {
-  color: #ffffff !important;
-  font-weight: 600;
-}
-#mobile-nav.theme-magic .mobile-tab.active .mobile-active-pill {
-  background-color: #5194ea;
-  border: 1px solid #5194ea;
-  box-shadow: 0 2px 10px rgba(81, 148, 234, 0.4);
-}
 
-#nav.theme-dark,
-#mobile-nav.theme-dark {
-  background-color: #0b1120;
-  border: 1px solid rgba(81, 148, 234, 0.3);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6);
-}
-#nav.theme-dark .nav-pointer {
-  background-color: #5194ea;
-  border: 1px solid #5194ea;
-  box-shadow: 0 2px 10px rgba(81, 148, 234, 0.4);
-}
-#nav.theme-dark .nav-item,
+#mobile-nav.theme-magic .mobile-tab,
 #mobile-nav.theme-dark .mobile-tab {
   color: #94a3b8;
 }
-#nav.theme-dark .nav-item:hover,
-#nav.theme-dark .nav-item.active,
+
+#mobile-nav.theme-magic .mobile-tab.active,
 #mobile-nav.theme-dark .mobile-tab.active {
   color: #ffffff !important;
-  font-weight: 600;
 }
+
+#mobile-nav.theme-magic .mobile-tab.active .mobile-active-pill,
 #mobile-nav.theme-dark .mobile-tab.active .mobile-active-pill {
   background-color: #5194ea;
   border: 1px solid #5194ea;
   box-shadow: 0 2px 10px rgba(81, 148, 234, 0.4);
 }
 
-/* Brand Logo switching for Light / Dark mode */
-.brand-logo-dark {
-  display: none;
-}
-.brand-logo-light {
-  display: block;
-}
-
-/* When dark mode class is on html/parent */
-:global(.dark) .brand-logo-dark,
-.dark .brand-logo-dark {
-  display: block !important;
-}
-:global(.dark) .brand-logo-light,
-.dark .brand-logo-light {
-  display: none !important;
-}
-:global(.dark) .brand-logo-pill,
-.dark .brand-logo-pill {
-  background: rgba(15, 23, 42, 0.88) !important;
-  border-color: rgba(67, 121, 191, 0.35) !important;
-}
-
-/* System prefers-color-scheme dark (if not overridden by explicit light class) */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) .brand-logo-dark {
-    display: block;
-  }
-  :root:not(.light) .brand-logo-light {
-    display: none;
-  }
-  :root:not(.light) .brand-logo-pill {
-    background: rgba(15, 23, 42, 0.88);
-    border-color: rgba(67, 121, 191, 0.35);
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
-  }
-}
 
