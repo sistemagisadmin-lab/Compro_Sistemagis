@@ -31,7 +31,7 @@ export function initNavbar(): void {
     { sectionId: 'solutions',    desktopHref: '/layanan',     mobileHref: '/layanan',       theme: 'magic' },
     { sectionId: 'why-magis',    desktopHref: '/layanan',     mobileHref: '/layanan',       theme: 'magic' },
     { sectionId: 'works',        desktopHref: '/#works',      mobileHref: '/#works',        theme: 'magic' },
-    { sectionId: 'how-we-work',  desktopHref: '/#works',      mobileHref: '/#works',        theme: 'magic' },
+    { sectionId: 'how-we-work',  desktopHref: '/tentang-kami',mobileHref: '/tentang-kami',  theme: 'magic' },
     { sectionId: 'about',        desktopHref: '/tentang-kami',mobileHref: '/tentang-kami',  theme: 'magic' },
     { sectionId: 'contact',      desktopHref: null,           mobileHref: '/tentang-kami',  theme: 'dark'  },
   ];

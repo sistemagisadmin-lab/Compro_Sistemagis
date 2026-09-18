@@ -1,52 +1,30 @@
----
+  ---
 const works = [
   {
-    title: "KisahMagis — Wedding & Digital Invitation Platform",
-    client: "Sistemagis Product",
-    category: "Consumer Web & Event Tech",
-    desc: "Platform all-in-one undangan pernikahan digital interaktif dengan integrasi RSVP instan, manajemen meja, check-in QR code, dan wedding planning dashboard.",
-    technologies: ["Astro", "Svelte", "PostgreSQL", "Tailwind CSS", "Cloudflare"],
-    result: "Melayani ribuan tamu pernikahan dengan 99.9% uptime dan loading time < 1 detik.",
-    badgeColor: "bg-[#5194ea]/10 text-[#5194ea] border-[#5194ea]/20",
-    linkText: "Lihat Produk →",
-    linkHref: "https://www.weddingmagis.my.id/",
+    title: "Jaya Bersama Interior — Toko Sanitari, Granit & Keramik Bandung",
+    client: "Jaya Bersama Interior (JBI)",
+    domain: "jayabersamainterior.my.id",
+    image: "/portfolio/jaya-bersama-interior.png",
+    imageAlt: "Preview Website Jaya Bersama Interior",
+    desc: "Website company profile & e-katalog modern untuk distributor resmi sanitari (AER, INA, WASSER) dan granit tile di Bandung. Dilengkapi struktur katalog interaktif, direct WhatsApp order, dan optimasi Local SEO berbasis Schema.",
+    technologies: ["Astro", "Tailwind CSS", "TypeScript", "Local SEO Schema", "Cloudflare"],
+    result: "Meningkatkan visibilitas pencarian Google lokal di Bandung & memudahkan pelanggan menjelajahi katalog produk secara instan.",
+    linkText: "Kunjungi Website →",
+    linkHref: "https://www.jayabersamainterior.my.id/",
     external: true,
   },
   {
-    title: "Sistem Manajemen Kost Multi-Properti",
-    client: "Property Management Client",
-    category: "Custom Business System",
-    desc: "Sistem terpadu pengelolaan properti kost: penagihan sewa otomatis via WhatsApp, auto-reconciliation payment gateway, pencatatan biaya, dan analitik okupansi.",
-    technologies: ["TypeScript", "Fastify", "PostgreSQL", "React", "Docker"],
-    result: "Memangkas waktu rekonsiliasi manual sebesar 85% dan menurunkan angka keterlambatan bayar sewa.",
-    badgeColor: "bg-[#5194ea]/10 text-[#5194ea] border-[#5194ea]/20",
-    linkText: "Detail Solusi →",
-    linkHref: "#contact",
-    external: false,
-  },
-  {
-    title: "Platform Digital Photobooth & Live Cloud Gallery",
-    client: "Corporate Event Partner",
-    category: "Interactive Event Platform",
-    desc: "Software photobooth otomatis dengan dynamic custom frame generator, instant QR code download, dan sinkronisasi galeri foto cloud realtime di lokasi event.",
-    technologies: ["WebSockets", "Node.js", "Canvas API", "AWS S3", "Svelte"],
-    result: "Telah digunakan di berbagai corporate gathering dan event dengan ribuan capture foto per sesi.",
-    badgeColor: "bg-[#0f172a]/10 text-[#0f172a] border-[#0f172a]/20",
-    linkText: "Detail Solusi →",
-    linkHref: "#contact",
-    external: false,
-  },
-  {
-    title: "Automasi Ekstraksi Dokumen & AI Copilot Internal",
-    client: "Fintech & B2B Service",
-    category: "AI & Automation Solution",
-    desc: "Pipeline otomasi pemrosesan faktur dan dokumen legal dengan integrasi LLM dan semantic search, menghubungkan data langsung ke database akuntansi klien.",
-    technologies: ["Python", "FastAPI", "OpenAI API", "pgvector", "n8n"],
-    result: "Menghemat lebih dari 120 jam kerja staf administrasi setiap bulan dengan akurasi ekstraksi 98%.",
-    badgeColor: "bg-[#8b5cf6]/10 text-[#8b5cf6] border-[#8b5cf6]/25",
-    linkText: "Detail Solusi →",
-    linkHref: "#contact",
-    external: false,
+    title: "PT Family Teknik Paimin Groups — Jasa Servis & Cuci AC Jabodetabek",
+    client: "PT Family Teknik Paimin Groups",
+    domain: "familyteknik.my.id",
+    image: "/portfolio/family-teknik.png",
+    imageAlt: "Preview Website PT Family Teknik Paimin Groups",
+    desc: "Landing page interaktif dengan sistem dynamic interactive carousel, kalkulator transparansi daftar harga servis bergaransi, dan integrasi direct WhatsApp dispatch se-Jabodetabek.",
+    technologies: ["Astro", "Tailwind CSS", "JavaScript", "Geo-Targeting SEO", "Responsive UI"],
+    result: "Mendongkrak konversi pemesanan servis teknisi dengan performa loading sub-detik (<800ms) dan alur konsultasi yang mulus.",
+    linkText: "Kunjungi Website →",
+    linkHref: "https://www.familyteknik.my.id/",
+    external: true,
   },
 ];
 ---
@@ -62,44 +40,68 @@ const works = [
         Things We've Made
       </h2>
       <p class="mt-4 text-slate-600 text-base sm:text-xl font-medium leading-relaxed">
-        <span class="text-[#0f172a] font-semibold">From Ideas to Something Real.</span> Cuplikan sistem dan platform digital yang kami rancang, bangun, dan operasikan secara nyata.
+        <span class="text-[#0f172a] font-semibold">From Ideas to Something Real.</span> Cuplikan sistem dan platform digital yang kami rancang, bangun, dan luncurkan secara nyata untuk klien kami.
       </p>
     </div>
 
     <!-- Works Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
       {
         works.map((item) => (
-          <div class="p-8 sm:p-10 rounded-3xl bg-white border border-slate-200/90 hover:border-[#5194ea]/50 transition-all duration-300 group hover:shadow-2xl hover:shadow-[#5194ea]/10 flex flex-col justify-between">
+          <div class="group rounded-3xl bg-white border border-slate-200/90 hover:border-[#5194ea]/50 transition-all duration-300 hover:shadow-2xl hover:shadow-[#5194ea]/10 flex flex-col justify-between overflow-hidden">
             <div>
-              <div class="flex items-center justify-between mb-4">
-                <span class={`px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider border ${item.badgeColor}`}>
-                  {item.category}
-                </span>
-                <span class="text-xs font-medium text-slate-500 font-mono">
-                  {item.client}
-                </span>
-              </div>
+              <!-- Website Preview Image Frame -->
+              <a
+                href={item.linkHref}
+                target={item.external ? "_blank" : "_self"}
+                rel={item.external ? "noopener noreferrer" : ""}
+                class="block relative aspect-[16/10] w-full overflow-hidden bg-slate-100 border-b border-slate-200/80 cursor-pointer group/preview"
+              >
+                <img
+                  src={item.image}
+                  alt={item.imageAlt}
+                  class="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+                  loading="lazy"
+                />
+                <!-- Subtle Hover Overlay with CTA -->
+                <div class="absolute inset-0 bg-slate-950/20 opacity-0 group-hover/preview:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[1px]">
+                  <span class="px-4 py-2 rounded-full bg-white text-[#0f172a] text-xs font-bold shadow-lg flex items-center gap-1.5 transform translate-y-2 group-hover/preview:translate-y-0 transition-transform duration-300">
+                    <span>Buka Live Website</span>
+                    <svg class="w-3.5 h-3.5 text-[#5194ea]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </span>
+                </div>
+              </a>
 
-              <h3 class="text-xl sm:text-2xl font-black text-[#0f172a] tracking-tight group-hover:text-[#5194ea] transition-colors mb-3">
-                {item.title}
-              </h3>
+              <!-- Card Body Content -->
+              <div class="p-6 sm:p-8">
+                <div class="mb-2.5">
+                  <span class="text-xs font-bold text-slate-500 uppercase tracking-wider font-mono">
+                    {item.client}
+                  </span>
+                </div>
 
-              <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
-                {item.desc}
-              </p>
+                <h3 class="text-xl sm:text-2xl font-black text-[#0f172a] tracking-tight group-hover:text-[#5194ea] transition-colors mb-3">
+                  {item.title}
+                </h3>
 
-              <!-- Outcome Highlight -->
-              <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/60 mb-6">
-                <div class="text-xs font-bold uppercase tracking-wider text-[#5194ea] mb-1">Dampak & Hasil:</div>
-                <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
-                  {item.result}
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+                  {item.desc}
                 </p>
+
+                <!-- Outcome Highlight -->
+                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/60 mb-2">
+                  <div class="text-xs font-bold uppercase tracking-wider text-[#5194ea] mb-1">Dampak & Hasil:</div>
+                  <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                    {item.result}
+                  </p>
+                </div>
               </div>
             </div>
 
             <!-- Tech Tags & Action Link -->
-            <div class="pt-6 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
+            <div class="px-6 sm:px-8 pb-6 sm:pb-8 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-4">
               <div class="flex flex-wrap gap-1.5">
                 {item.technologies.map((t) => (
                   <span class="px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px] font-mono font-medium">
